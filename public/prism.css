@@ -5,7 +5,7 @@
 */
 pre[class*="language-"],
 code[class*="language-"] {
-  color: #d8dee9;
+  color: var(--code-text);
   font-size: 1em;
   text-shadow: none;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
@@ -40,13 +40,13 @@ pre[class*="language-"] {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
-  background: #2e3440;
+  background: var(--code-background);
 }
 :not(pre) > code[class*="language-"] {
   padding: 0.1em;
   border-radius: 0.3em;
-  color: #d8dee9;
-  background: #2e3440;
+  color: var(--inline-code-text);
+  background: var(--background-color-secondary);
 }
 /*********************************************************
 * Tokens
@@ -58,10 +58,10 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #606e87;
+  color: var(--token-comment);
 }
 .token.punctuation {
-  color: #81a1c1;
+  color: var(--token-punctuation);
 }
 .token.property,
 .token.tag,
@@ -70,7 +70,7 @@ pre[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-  color: #b48ead;
+  color: var(--token-property-etc);
 }
 .token.selector,
 .token.attr-name,
@@ -78,28 +78,28 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-  color: #a2bf8c;
+  color: var(--token-string-etc);
 }
 .token.operator,
 .token.entity,
 .token.url,
 .language-css .token.string,
 .style .token.string {
-  color: #80a2c1;
+  color: var(--token-operator-etc);
   background: none;
 }
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  color: #81a1c1;
+  color: var(--token-keyword);
 }
 .token.function {
-  color: #8fbcbc;
+  color: var(--token-function);
 }
 .token.regex,
 .token.important,
 .token.variable {
-  color: #ee9900;
+  color: var(--token-variable);
 }
 .token.important,
 .token.bold {
@@ -127,8 +127,8 @@ pre[class*="language-"] > code[class*="language-"] {
   right: 0;
   padding: inherit 0;
   margin-top: 1em;
-  background: #3b4251;
-  box-shadow: inset 5px 0 0 #d8dee9;
+  background: #3b4251; /* This can be kept static or changed as needed */
+  box-shadow: inset 5px 0 0 var(--text-color);
   z-index: 0;
   pointer-events: none;
   line-height: inherit;

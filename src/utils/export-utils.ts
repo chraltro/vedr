@@ -44,6 +44,14 @@ export function generateThemeCss(theme?: Theme, activeFontFamily?: string): stri
     "--navigation-button-color": coreTheme["--background-color"],
     "--navigation-counter-color": coreTheme["--text-color"],
     "--slide-font-family": activeFontFamily || fontFamilies.Inter,
+    "--token-comment": `${coreTheme["--text-color"]}99`, // Faded text color
+    "--token-punctuation": `${coreTheme["--text-color"]}aa`, // Slightly faded text color
+    "--token-property-etc": coreTheme["--secondary-color"],
+    "--token-string-etc": "#a3be8c", // Kept static green for readability
+    "--token-operator-etc": coreTheme["--text-color"],
+    "--token-keyword": coreTheme["--primary-color"],
+    "--token-function": coreTheme["--secondary-color"],
+    "--token-variable": "#ee9900", // Kept static orange for readability
   };
   let css = ":root {\n";
   for (const [key, value] of Object.entries(finalTheme)) {
@@ -293,7 +301,8 @@ html, body {
 }
 .slide pre code .token.comment {
   font-style: italic;
-  color: #606e87;
+  color: var(--code-text);
+  opacity: 0.65;
 }
 .slide code:not(pre code) {
   background-color: var(--background-color-secondary);
