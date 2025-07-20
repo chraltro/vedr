@@ -75,33 +75,6 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
           </span>
         </button>{" "}
       </div>
-
-      <div className="flex items-center justify-end space-x-2 w-full ">
-        <a
-          href="https://github.com/sponsors/chraltro"
-          className="flex flex-row items-center group transition-all px-1 py-1 rounded-md ease-in-out duration-700 w-10 hover:w-24 overflow-hidden"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span className="flex-shrink-0">
-            <DonateIcon />
-          </span>
-          <span className="ml-1.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-            Sponsor
-          </span>
-        </a>
-        <a
-          href="https://github.com/chraltro/mdpresentation"
-          className="flex flex-row items-center group transition-all  px-1 py-1 rounded-md ease-in-out duration-700  w-10 hover:w-24 overflow-hidden"
-        >
-          <span className="flex-shrink-0">
-            <GitHubIcon />
-          </span>
-          <span className="ml-1.5 whitespace-nowrap  opacity-0   group-hover:opacity-100 transition-opacity duration-700">
-            Github
-          </span>
-        </a>{" "}
-      </div>
     </header>
   );
 }
