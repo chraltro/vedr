@@ -272,7 +272,6 @@ html, body {
   font-size: var(--slide-h3-size);
 }
 .slide p {
-  padding-left: 5%;
   margin:  0;
   font-weight:400;
   line-height: 1.6;
