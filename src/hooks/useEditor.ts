@@ -44,45 +44,65 @@ export function useEditor(
     const currentPos = view.state.selection.main.head;
     const cursorLineNumber = doc.lineAt(currentPos).number;
 
-    let MainHeadings: number[] = [];
-    let slideStartIndex = -1;
-    let slideEndIndex = -1;
+    let inCodeBlock = false;
+    const headingRegex = /^#{1,6} /;
+    const allHeadingLines: number[] = [];
     let headingsAboveCursor = 0;
+    let slideStartLine = -1;
 
     for (let i = 1; i <= doc.lines; i++) {
-      const lineText = doc.line(i).text.trimStart();
-      if (lineText.startsWith("# ") || lineText.startsWith("## ")) {
-        MainHeadings.push(i);
-        if (cursorLineNumber >= i) {
-          slideStartIndex = i;
+      const line = doc.line(i);
+      const lineText = line.text;
+
+      if (lineText.trim().startsWith("```")) {
+        inCodeBlock = !inCodeBlock;
+      }
+
+      const isHeading = !inCodeBlock && headingRegex.test(lineText);
+
+      if (isHeading) {
+        allHeadingLines.push(i);
+        if (i <= cursorLineNumber) {
           headingsAboveCursor++;
-        } else if (slideEndIndex === -1) {
-          slideEndIndex = i;
+          slideStartLine = i;
         }
       }
     }
 
-    setTotalSlidesNumber(Math.max(MainHeadings.length, 1));
+    setTotalSlidesNumber(Math.max(allHeadingLines.length, 1));
     setCurrentSlide(Math.max(headingsAboveCursor, 1));
-
-    if (slideStartIndex === -1) {
-      // setCurrentSlideText(doc.toString());
-      setCurrentSlideText("");
+    
+    if (slideStartLine === -1) {
+      // If cursor is before any headings, show the first slide's content
+      if (allHeadingLines.length > 0) {
+        const firstHeadingLine = allHeadingLines;
+        const nextHeadingLine = allHeadingLines.length > 1 ? allHeadingLines : doc.lines + 1;
+        const slideStartPos = doc.line(firstHeadingLine).from;
+        const slideEndPos = doc.line(nextHeadingLine - 1).to;
+        setCurrentSlideText(doc.sliceString(slideStartPos, slideEndPos).trim());
+      } else {
+        // No headings at all, just show all text
+        setCurrentSlideText(doc.toString());
+      }
       return;
     }
+    
+    const currentHeadingIndex = allHeadingLines.indexOf(slideStartLine);
+    const nextHeadingLine = (currentHeadingIndex + 1 < allHeadingLines.length) 
+        ? allHeadingLines[currentHeadingIndex + 1]
+        : doc.lines + 1;
 
-    const slideStartPos = doc.line(slideStartIndex).from;
-    const slideEndPos = slideEndIndex !== -1 ? doc.line(slideEndIndex).from : doc.length;
+    const slideStartPos = doc.line(slideStartLine).from;
+    const slideEndPos = doc.line(nextHeadingLine - 1).to;
+    const currentSlideContent = doc.sliceString(slideStartPos, slideEndPos).trim();
+    setCurrentSlideText(currentSlideContent);
 
-    const currentSlideText = doc.sliceString(slideStartPos, slideEndPos).trim();
-    setCurrentSlideText(currentSlideText);
   }, [codeMirrorRef]);
 
   const editorUpdateListener = useMemo(
     () =>
       EditorView.updateListener.of((update) => {
         if (isEditorReady) {
-          // Process on any update OR when editor first becomes ready
           if (update.docChanged || update.selectionSet || !update.transactions.length) {
             processEditorState();
           }
