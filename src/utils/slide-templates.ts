@@ -15,9 +15,6 @@ This slide covers the basics of text and lists.
     * [ ] Add more creative examples.
     * [ ] Share with the world!
 
----
-> A horizontal rule for a dramatic pause.
-
 ## Code & Data
 Display syntax-highlighted code and structured tables.
 
@@ -31,12 +28,6 @@ async function fetchData(url) {
 }
 \`\`\`
 
-| Feature      | Status     | Alignment |
-| :----------- | :--------: | --------: |
-| Live Preview | Functional |      Good |
-| Vim Mode     | Enabled    |      Good |
-| Exporting    | Working    |      Good |
-
 ## Visuals & Quotes
 Combine images, links, and nested blockquotes.
 
@@ -45,8 +36,6 @@ Combine images, links, and nested blockquotes.
 > This tool is **amazing**.
 >> It simplifies the entire presentation workflow.
 >> - A Happy User
-
-For more, visit the [official repository](https://github.com/dijith-481/mdpresentation).
 
 ## The Language of Math ($KaTeX$)
 Render beautiful mathematical formulas, from simple to complex.
