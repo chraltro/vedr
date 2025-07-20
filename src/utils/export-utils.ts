@@ -180,7 +180,7 @@ padding-left: 5%;
   margin:  0;
 font-weight:400;
   line-height: 1.6;
-text-align:justify;
+text-align:left; /* Changed from justify to left */
 }
 #first-slide pre {
   background-color: transparent !important;
