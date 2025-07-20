@@ -24,16 +24,16 @@ export default function InfoPopup({ show, onClose, popupRef }: InfoPopupProps) {
       <div>
         <h3 className="font-semibold text-nord8 text-sm mb-2">Editor Information</h3>
         <p className="mb-1">
-          <strong className="text-nord7">Focus Editor:</strong> Tryk <kbd>i</kbd> for hurtigt at fokusere
-          Markdown-editoren.
+          <strong className="text-nord7">Focus Editor:</strong> Press <kbd>i</kbd> to quickly focus
+          the Markdown editor.
         </p>
         <p className="mb-1">
-          <strong className="text-nord7">Slet alt indhold:</strong> Tryk <kbd>ggdG</kbd> for
-          hurtigt at slette alt indhold
+          <strong className="text-nord7">Delete all content:</strong> Press <kbd>ggdG</kbd> to
+          quickly delete all content.
         </p>
 
         <ul className="mb-1">
-          <strong className="text-nord7">Vim-tilstand:</strong> Grundlæggende Vim-tastaturgenveje er aktiveret.
+          <strong className="text-nord7">Vim Mode:</strong> Basic Vim keybindings are enabled.
           <li>
             <kbd>Esc</kbd>
           </li>
@@ -41,42 +41,42 @@ export default function InfoPopup({ show, onClose, popupRef }: InfoPopupProps) {
             <kbd>i</kbd>
           </li>
           <li>
-            <kbd>:w</kbd> for at gemme .md
+            <kbd>:w</kbd> to save .md
           </li>
           <li>
-            <kbd>:ws</kbd> for at gemme slides,{" "}
+            <kbd>:ws</kbd> to save slides{" "}
           </li>
           <li>
-            <kbd>:u</kbd> for at uploade
+            <kbd>:u</kbd> to upload
           </li>
           <li>
-            <kbd>:p</kbd> for at forhåndsvise
+            <kbd>:p</kbd> to preview
           </li>
           <li>
-            <kbd>:page</kbd> for at slå sidetal til/fra
+            <kbd>:page</kbd> to toggle page numbers
           </li>
           <li>
-            <kbd>:h</kbd> for at tilføje sidehoved/sidefod
+            <kbd>:h</kbd> to add header/footer
           </li>
           <li>
-            <kbd>:t</kbd> for at skifte til næste tema
+            <kbd>:t</kbd> to switch to next theme
           </li>
           <li>
-            <kbd>:f</kbd> for at skifte til næste skrifttype {/* Ny Vim-kommando */}
+            <kbd>:f</kbd> to switch to next font {/* New Vim command */}
           </li>
         </ul>
         <p className="mb-1">
-          <strong className="text-nord7">Slide-oprettelse:</strong> Brug Markdown-overskrifter
-          <code className="">#</code>, <code className="">##</code> for nye slides.
+          <strong className="text-nord7">Slide Creation:</strong> Use Markdown headings
+          <code className="">#</code>, <code className="">##</code> for new slides.
         </p>
         <p className="mb-1">
-          <strong className="text-nord7">Live-forhåndsvisning:</strong> Viser den aktuelle slide.
+          <strong className="text-nord7">Live Preview:</strong> Shows the current slide.
         </p>
         <p>
-          <strong className="text-nord7">Eksport:</strong> Brug knapperne i sidehovedet eller Vim-kommandoer.
+          <strong className="text-nord7">Export:</strong> Use the buttons in the header or Vim commands.
         </p>
-        <p>For mere information om, hvordan du bruger md Presentation, tjek</p> {/* Changed */}
-        <a href="https://github.com/dijith-481/mdpresentation" className="text-nord9 underline text-xs"> {/* Changed URL */}
+        <p>For more information on how to use md Presentation, check</p>
+        <a href="https://github.com/dijith-481/mdpresentation" className="text-nord9 underline text-xs">
           Github readme.
         </a>
       </div>

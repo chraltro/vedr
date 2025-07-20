@@ -69,7 +69,7 @@ export default function HeaderFooterManager({
 
   const onToggleAddForm = () => {
     if (availableHeaderFooterPositions.length === 0) {
-      alert("No header/footer positions available.Try deleting some");
+      alert("No header/footer positions available. Try deleting some.");
     } else {
       setIsEditing((prev) => !prev);
       setFormOpen((prev) => !prev);

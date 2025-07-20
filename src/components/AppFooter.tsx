@@ -92,7 +92,7 @@ export default function AppFooter() {
             ref={infoButtonRef}
             onClick={toggleInfoPopup}
             className="p-1.5 rounded-md bg-nord0/30 focus:outline-none  text-nord9 hover:bg-nord0/80"
-            title="about Markweavia"
+            title="About md Presentation"
           >
             {infoIcon}
           </button>

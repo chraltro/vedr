@@ -2,13 +2,13 @@
 export interface FontCache {
   inter: string | null;
   iosevka: string | null;
-  diatype: string | null; // Tilføj diatype til cache
+  diatype: string | null; // Add diatype to cache
 }
 
 const fontCache: FontCache = {
   inter: null,
   iosevka: null,
-  diatype: null, // Initialiser diatype
+  diatype: null, // Initialize diatype
 };
 
 async function fileToBase64(file: File): Promise<string> {
@@ -24,18 +24,18 @@ async function fileToBase64(file: File): Promise<string> {
   });
 }
 
-// Hent base-stien fra miljøvariabler
-// Sørg for, at dette opsamles korrekt under byggeprocessen
+// Get base path from environment variables
+// Ensure this is correctly picked up during the build process
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 async function fetchAndEncodeFont(fontPath: string): Promise<string> {
   try {
-    // Konstruer den fulde URL for aktivet
-    // Fjern indledende skråstreg fra fontPath, hvis den findes, for at undgå //
+    // Construct the full URL for the asset
+    // Remove leading slash from fontPath if it exists, to avoid //
     const assetRelativePath = fontPath.startsWith('/') ? fontPath.substring(1) : fontPath;
-    const fullUrl = `${BASE_PATH}/${assetRelativePath}`; // Sørg for, at BASE_PATH anvendes
+    const fullUrl = `${BASE_PATH}/${assetRelativePath}`; // Ensure BASE_PATH is applied
 
-    const response = await fetch(fullUrl); // Brug den korrigerede fulde URL
+    const response = await fetch(fullUrl); // Use the corrected full URL
     if (!response.ok) {
       throw new Error(`Failed to fetch font from ${fullUrl}: ${response.statusText || response.status}`);
     }
@@ -51,19 +51,19 @@ async function fetchAndEncodeFont(fontPath: string): Promise<string> {
 
 export async function getEncodedFonts(): Promise<FontCache> {
   try {
-    if (fontCache.inter && fontCache.iosevka && fontCache.diatype) { // Tjek alle skrifttyper
+    if (fontCache.inter && fontCache.iosevka && fontCache.diatype) { // Check all fonts
       return { ...fontCache };
     }
 
-    const [interBase64, iosevkaBase64, diatypeBase64] = await Promise.all([ // Hent diatype
+    const [interBase64, iosevkaBase64, diatypeBase64] = await Promise.all([ // Get diatype
       fetchAndEncodeFont("InterVariable.woff2"),
       fetchAndEncodeFont("iosevka.woff2"),
-      fetchAndEncodeFont("ABC Diatype.woff2"), // Hent den nye skrifttype
+      fetchAndEncodeFont("ABC Diatype.woff2"), // Get the new font
     ]);
 
     fontCache.inter = interBase64;
     fontCache.iosevka = iosevkaBase64;
-    fontCache.diatype = diatypeBase64; // Gem diatype
+    fontCache.diatype = diatypeBase64; // Store diatype
 
     return { ...fontCache };
   } catch (error) {

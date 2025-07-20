@@ -4,7 +4,7 @@ import TemplateSelector from "@/components/PreviewPanel/LayoutManager/TemplateSe
 import FontScaler from "@/components/PreviewPanel/LayoutManager/FontScaler";
 import LayoutSettings from "@/components/PreviewPanel/LayoutManager/LayoutSettings";
 import HeaderFooterManager from "@/components/PreviewPanel/LayoutManager/HeaderFooterManager";
-import FontSelector from "@/components/PreviewPanel/LayoutManager/FontSelector"; // Importer FontSelector
+import FontSelector from "@/components/PreviewPanel/LayoutManager/FontSelector"; // Import FontSelector
 import ToggleExpand from "@/components/UI/ToggleExpand";
 import { useSlideContext } from "@/context/slideContext";
 import { headerFooterPositions } from "@/utils/layoutOptions";
@@ -44,7 +44,7 @@ export default function LayoutManager({ isKeyboardVisible }: LayoutManagerProps)
           <div className="flex flex-col gap-2 w-full md:w-auto justify-center">
             <ThemeSelector />
             <TemplateSelector />
-            <FontSelector /> {/* Tilføj FontSelector her */}
+            <FontSelector /> {/* Add FontSelector here */}
           </div>
           <FontScaler />
           <LayoutSettings availableHeaderFooterPositions={availableHeaderFooterPositions} />

@@ -24,7 +24,7 @@ export default function LayoutSettings({ availableHeaderFooterPositions }: Layou
 
   const onToggleShowPageNumbers = () => {
     if (availableHeaderFooterPositions.length === 0 && !showPageNumbers) {
-      alert("No header/footer positions available.Try deleting some");
+      alert("No header/footer positions available. Try deleting some.");
       return;
     }
     if (showPageNumbers) {
@@ -68,7 +68,7 @@ export default function LayoutSettings({ availableHeaderFooterPositions }: Layou
           color={`${showPageNumbers ? "bg-nord8 text-nord0 " : "bg-nord1 text-nord4/80 hover:bg-nord8/70 "}    hover:text-nord0`}
         >
           <CheckboxIcon checked={showPageNumbers} />
-          Page Nunber
+          Page Number
         </Button>
       )}
       {canToggleFirstPageLayout && (

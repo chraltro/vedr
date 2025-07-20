@@ -124,10 +124,10 @@ Thank the audience for their time and provide your contact information.
 *   [Your Email](link)
 *   [Your Phone Number](link)`,
   academic: `# College Presentation Template
-        presented by md Presentation`, // Changed
-  vim: `# Vim Motions in md Presentation`, // Changed
+        presented by md Presentation`,
+  vim: `# Vim Motions in md Presentation`,
 
-  initialMarkdown: `# [md Presentation](https://chraltro.github.io/mdpresentation/) // Changed URL
+  initialMarkdown: `# [md Presentation](https://github.com/dijith-481/mdpresentation/)
       markdown beautifully woven.
      made with ❤️ by dijith
 ## Overview
@@ -217,7 +217,7 @@ You can also control text alignment within table columns.
 ## Links
 
 Linking to external resources is straightforward.
-Visit [md Presentation](https://chraltro.github.io/mdpresentation) for weaving markdown slides with latex support. // Changed
+Visit [md Presentation](https://github.com/dijith-481/mdpresentation) for weaving markdown slides with latex support.
 You can also use reference-style links if you prefer.
 This is another line to fill space.
 And one more for good measure.
@@ -225,8 +225,8 @@ And one more for good measure.
 ## Images
 
 Displaying images is also possible.
-![Alt md Presentation logo](https://i.ibb.co/qMjBm5yx/M.png) // Changed
-Note: The image above is a placeholder  md Presentation logo.) // Changed
+![Alt md Presentation logo](https://i.ibb.co/qMjBm5yx/M.png)
+Note: The image above is a placeholder md Presentation logo.)
 >Partial support for now with links
 
 ## Blockquotes

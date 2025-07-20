@@ -13,27 +13,27 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "md Presentation", // Changed
-    template: "%s - md Presentation", // Changed
+    default: "md Presentation",
+    template: "%s - md Presentation",
   },
   description:
-    "A no-nonsense tool for crafting minimalist, professional platform-independant presentations directly from Markdown using familiar Vim motions.", // Description remains same, focuses on functionality
+    "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "md Presentation", // Changed
+    title: "md Presentation",
     description:
-      "A no-nonsense tool for crafting minimalist, professional platform-independant presentations directly from Markdown using familiar Vim motions.", // Description remains same
-    url: "https://chraltro.github.io/mdpresentation", // Changed URL to your GitHub Pages
-    siteName: "md Presentation", // Changed
+      "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
+    url: "https://github.com/dijith-481/mdpresentation",
+    siteName: "md Presentation",
     images: [
       {
-        url: "https://chraltro.github.io/mdpresentation/image.png", // Changed URL to your GitHub Pages
+        url: "https://github.com/dijith-481/mdpresentation/image.png",
         width: 1200,
         height: 630,
-        alt: "md Presentation - Markdown Presentation Tool", // Changed
+        alt: "md Presentation - Markdown Presentation Tool",
       },
     ],
     locale: "en_US",
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "md Presentation", // Changed
+    title: "md Presentation",
     description:
-      "A no-nonsense tool for crafting minimalist, professional platform-independant presentations directly from Markdown using familiar Vim motions.", // Description remains same
-    images: ["https://chraltro.github.io/mdpresentation/editor.png"], // Changed URL to your GitHub Pages
+      "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
+    images: ["https://github.com/dijith-481/mdpresentation/editor.png"],
     creator: "@dijith_",
   },
   robots: {
@@ -67,10 +67,10 @@ export const metadata: Metadata = {
     "minimalist slides",
     "offline first",
     "nord theme",
-    "md presentation" // Added new keyword
+    "md presentation"
   ],
   alternates: {
-    canonical: "https://chraltro.github.io/mdpresentation", // Changed URL to your GitHub Pages
+    canonical: "https://github.com/dijith-481/mdpresentation",
   },
 };
 export default function RootLayout({
@@ -81,10 +81,10 @@ export default function RootLayout({
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "md Presentation", // Changed
+    name: "md Presentation",
     description:
-      "A no-nonsense tool for creating professional, platform-independent HTML presentations from Markdown using familiar Vim motions.", // Description remains same
-    url: "https://chraltro.github.io/mdpresentation", // Changed URL to your GitHub Pages
+      "A no-nonsense tool for creating professional, platform-independent HTML presentations from Markdown using familiar Vim motions.",
+    url: "https://github.com/dijith-481/mdpresentation",
     applicationCategory: "Productivity",
     creator: {
       "@type": "Person",

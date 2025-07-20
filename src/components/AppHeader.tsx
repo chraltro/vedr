@@ -18,7 +18,7 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
       <Link href="/" className=" px-2 w-full">
         <Image
           src="/logo.svg"
-          alt="md Presentation Logo" // Changed
+          alt="md Presentation Logo"
           className="  block md:hidden m-0  h-12  "
           width={20}
           height={20}
@@ -26,7 +26,7 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
         />
         <Image
           src="/markweavia.svg"
-          alt="md Presentation Text Logo" // Changed
+          alt="md Presentation Text Logo"
           className=" hidden md:block m-0 h-12   "
           width={180}
           height={40}
@@ -36,7 +36,7 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
       <div className="flex items-center justify-center space-x-2 w-full ">
         <div
           className="flex flex-row items-center group transition-all  px-1 py-1 rounded-md ease-in-out duration-700  w-10 hover:w-32 overflow-hidden"
-          title="Upload a Markdown file (.md) (Ctrl+O)"
+          title="Download a Markdown file (.md) or HTML slides"
         >
           <DropDownButton
             color="text-nord9"
@@ -87,11 +87,11 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
             <DonateIcon />
           </span>
           <span className="ml-1.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-            Sponser
+            Sponsor
           </span>
         </a>
         <a
-          href="https://github.com/dijith-481/mdpresentation" // Changed URL to your repo
+          href="https://github.com/dijith-481/mdpresentation"
           className="flex flex-row items-center group transition-all  px-1 py-1 rounded-md ease-in-out duration-700  w-10 hover:w-24 overflow-hidden"
         >
           <span className="flex-shrink-0">

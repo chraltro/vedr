@@ -4,7 +4,7 @@ import { PAGE_NUMBER_SLIDE_ID } from "@/utils/local-storage";
 import { themes } from "./themes";
 import { Theme } from "./themes";
 import { getprsmCss, getprismJs, getKatexCss } from "./export-consts";
-import { getEncodedFonts, FontCache } from "./fontDownload"; // Importer FontCache
+import { getEncodedFonts, FontCache } from "./fontDownload"; // Import FontCache
 import markedKatex from "marked-katex-extension";
 
 const options = {
@@ -15,14 +15,14 @@ marked.use(markedKatex(options));
 
 const defaultTheme = themes.nordDark;
 
-// Definer tilgængelige skrifttypefamilier og deres CSS-værdier
+// Define available font families and their CSS values
 export const fontFamilies = {
   Inter: "'Inter', sans-serif",
   Iosevka: "'Iosevka', monospace",
-  "ABC Diatype": "'ABC Diatype', sans-serif", // Tilføj den nye skrifttype
+  "ABC Diatype": "'ABC Diatype', sans-serif", // Add the new font
 };
 
-export function generateThemeCss(theme?: Theme, activeFontFamily?: string): string { // Tilføj activeFontFamily parameter
+export function generateThemeCss(theme?: Theme, activeFontFamily?: string): string { // Add activeFontFamily parameter
   const coreTheme = theme || defaultTheme;
 
   const finalTheme: Record<string, string> = {
@@ -45,7 +45,7 @@ export function generateThemeCss(theme?: Theme, activeFontFamily?: string): stri
     "--navigation-button-hover-background": coreTheme["--primary-color"],
     "--navigation-button-color": coreTheme["--background-color"],
     "--navigation-counter-color": coreTheme["--text-color"],
-    "--slide-font-family": activeFontFamily || fontFamilies.Inter, // Brug valgt skrifttypefamilie
+    "--slide-font-family": activeFontFamily || fontFamilies.Inter, // Use selected font family
   };
 
   let css = ":root {\n";
@@ -108,7 +108,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  font-family: var(--slide-font-family); /* Brug CSS-variabel for skrifttypefamilie */
+  font-family: var(--slide-font-family); /* Use CSS variable for font family */
 
   background-color: var(--background-color);
   color: var(--text-color);
@@ -162,6 +162,7 @@ gap:2%;
 font-style:bold;
 margin: 0;
   color: var(--heading-color);
+  font-family: var(--slide-font-family); /* Use CSS variable for headings */
 }
 .slide h1 {
   font-size: var(--slide-h1-size);
@@ -199,11 +200,12 @@ border:none !important;
   text-align: center;
 }
 #first-slide pre code{
-font-family: Inter !important;
+font-family: Iosevka !important; /* Keep Iosevka for code blocks */
  color:var(--text-color) !important;
 }
 #first-slide p {
   text-align: center;
+  font-family: var(--slide-font-family); /* Use CSS variable for first slide paragraph */
 }
 .slide ul, .slide ol {
 padding-left: 1.8em;
@@ -259,7 +261,7 @@ min-width: 70% ;
 .slide pre code {
   background-color: transparent;
   color: var(--code-text);
-font-family: Iosevka, monospace !important; /* Behold Iosevka for kodeblokke */
+font-family: Iosevka, monospace !important; /* Keep Iosevka for code blocks */
 font-size: inherit;
 }
 .slide code:not(pre code) {
@@ -267,7 +269,7 @@ font-size: inherit;
   color: var(--inline-code-text);
   padding: 0.1% 1%;
   border-radius: 0.5vw;
-font-family: Iosevka, monospace !important; /* Behold Iosevka for inline kode */
+font-family: Iosevka, monospace !important; /* Keep Iosevka for inline code */
 font-size: calc(var(--slide-font-size) * 0.9 );
 font-weight:300;
 }
@@ -341,7 +343,7 @@ text-decoration-thickness: 5%;
   color: var(--header-footer-color);
   padding: 3vmin 3.5vmin;
   z-index: 10;
-font-family: var(--slide-font-family); /* Brug CSS-variabel for skrifttypefamilie */
+font-family: var(--slide-font-family); /* Use CSS variable for font family */
 font-weight:400;
   white-space: nowrap;
 }
@@ -426,7 +428,7 @@ background-color: var(--secondary-color) !important;
 }
 `;
 
-// Hjælpefunktion til at generere alle font-face regler
+// Helper function to generate all font-face rules
 function generateAllFontFaces(encodedFonts: FontCache): string {
   let fontFaces = `
     @font-face{
@@ -443,10 +445,10 @@ function generateAllFontFaces(encodedFonts: FontCache): string {
         font-display: swap;
         font-style: normal;
     }
-    @font-face { /* Ny font-face for ABC Diatype */
+    @font-face { /* New font-face for ABC Diatype */
         font-family: 'ABC Diatype';
         src: url('data:font/woff2;base64,${encodedFonts.diatype}') format('woff2');
-        font-weight: 400; /* Juster efter behov for din skrifttype */
+        font-weight: 400; /* Adjust as needed for your font */
         font-display: swap;
         font-style: normal;
     }
@@ -461,16 +463,16 @@ export async function exportToCustomSlidesHtml(
   documentTitle?: string,
   theme?: Theme,
   fontSizeMultiplier?: number,
-  activeFont?: string, // Tilføj activeFont parameter
+  activeFont?: string, // Add activeFont parameter
 ): Promise<string> {
   const hasCode = hasCodeBlocks(fullMarkdown);
-  const encodedFonts = await getEncodedFonts(); // Hent alle kodede skrifttyper
+  const encodedFonts = await getEncodedFonts(); // Get all encoded fonts
   const themeCss = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]); // Send activeFontFamily
   const fontSizesCss = generateFontSizesCss(fontSizeMultiplier);
 
   const styles = `
     <style>
-      ${generateAllFontFaces(encodedFonts)} /* Inkluder alle font faces */
+      ${generateAllFontFaces(encodedFonts)} /* Include all font faces */
       ${fontSizesCss}
       ${themeCss}
       ${multiSlideCss}
@@ -706,9 +708,9 @@ fullScreenBtn.classList.add("fullscreen-button");
             Made with
             <a
               style="text-decoration: underline"
-              href="https://chraltro.github.io/mdpresentation" // Changed URL to your GitHub Pages
+              href="https://github.com/dijith-481/mdpresentation"
               >md Presentation</a
-            > {/* Changed */}
+            >
           </div>
           <div style="font-size: 1.4dvw; color: var(--primary-color)">
             Markdown, beautifully woven.
@@ -718,7 +720,7 @@ fullScreenBtn.classList.add("fullscreen-button");
 
       <div class="slide-header-footer-item pos-top-right">
         <a
-          href="https://github.com/dijith-481/mdpresentation" // Changed URL to your GitHub Pages
+          href="https://github.com/dijith-481/mdpresentation"
           style="text-decoration: none"
         >
           <svg
@@ -739,7 +741,7 @@ fullScreenBtn.classList.add("fullscreen-button");
       <div class="slide-header-footer-item pos-bottom-right">
         <a
           style="opacity: 0.4"
-          href="https://chraltro.github.io/mdpresentation" // Changed URL to your GitHub Pages
+          href="https://github.com/dijith-481/mdpresentation"
           style="text-decoration: none"
         >
           Create your own Slides
@@ -849,19 +851,19 @@ export async function exportSingleSlideToHtml(
   slideMarkdown: string | null,
   currentPageNo: number,
   layoutOptions?: SlideLayoutOptions,
-  activeFont?: string, // Tilføj activeFont parameter
+  activeFont?: string, // Add activeFont parameter
 ) {
   const themeCss = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]); // Send activeFontFamily
   const fontSizesCss = generateFontSizesCss(fontSizeMultiplier);
   const prismCss = await getprsmCss();
   const prismJs = await getprismJs();
   const katexCss = await getKatexCss();
-  const encodedFonts = await getEncodedFonts(); // Hent alle kodede skrifttyper
+  const encodedFonts = await getEncodedFonts(); // Get all encoded fonts
   const body = await exportSingleSlideToHtmlbody(slideMarkdown, currentPageNo, layoutOptions);
 
   const styles = `
     <style>
-      ${generateAllFontFaces(encodedFonts)} /* Inkluder alle font faces */
+      ${generateAllFontFaces(encodedFonts)} /* Include all font faces */
       ${prismCss}
       ${katexCss}
       ${themeCss}
@@ -911,8 +913,8 @@ export async function exportSingleSlideToHtml(
           event.data.data;
       } else if (event.data.type === "theme") {
         document.getElementsByClassName("theme-css")[0].innerHTML = event.data.data;
-      } else if (event.data.type === "fontFamily") { // Håndter skrifttypefamilieopdateringer
-        document.getElementsByClassName("theme-css")[0].innerHTML = event.data.data; // theme-css indeholder font-family variabel
+      } else if (event.data.type === "fontFamily") { // Handle font family updates
+        document.getElementsByClassName("theme-css")[0].innerHTML = event.data.data; // theme-css contains font-family variable
       }
 
       const slide = document.querySelector(".slide");

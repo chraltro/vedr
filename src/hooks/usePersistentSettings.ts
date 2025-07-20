@@ -6,14 +6,14 @@ import {
   LOCAL_STORAGE_THEME_KEY,
   LOCAL_STORAGE_FONT_MULTIPLIER_KEY,
   LOCAL_STORAGE_LAYOUT_OPTIONS_KEY,
-  LOCAL_STORAGE_FONT_KEY, // Importer ny nøgle
+  LOCAL_STORAGE_FONT_KEY, // Import new key
 } from "../utils/local-storage";
 
 export function usePersistentSettings() {
   const [markdownText, setMarkdownText] = useState<string>("");
   const [activeTheme, setActiveTheme] = useState<string>("nordDark");
   const [fontSizeMultiplier, setFontSizeMultiplier] = useState<number>(1);
-  const [activeFont, setActiveFont] = useState<string>("Inter"); // Ny tilstand for aktiv skrifttype, standard til Inter
+  const [activeFont, setActiveFont] = useState<string>("Inter"); // New state for active font, defaults to Inter
   const [slideLayoutOptions, setSlideLayoutOptions] = useState<SlideLayoutOptions>({
     layoutOnFirstPage: false,
     headerFooters: [],
@@ -25,7 +25,7 @@ export function usePersistentSettings() {
     setActiveTheme(localStorage.getItem(LOCAL_STORAGE_THEME_KEY) || "nordDark");
     const storedMultiplier = localStorage.getItem(LOCAL_STORAGE_FONT_MULTIPLIER_KEY);
     setFontSizeMultiplier(storedMultiplier ? parseFloat(storedMultiplier) : 1);
-    setActiveFont(localStorage.getItem(LOCAL_STORAGE_FONT_KEY) || "Inter"); // Indlæs aktiv skrifttype
+    setActiveFont(localStorage.getItem(LOCAL_STORAGE_FONT_KEY) || "Inter"); // Load active font
     const storedLayoutOptions = localStorage.getItem(LOCAL_STORAGE_LAYOUT_OPTIONS_KEY);
     setSlideLayoutOptions(
       storedLayoutOptions
@@ -57,7 +57,7 @@ export function usePersistentSettings() {
   }, [activeTheme]);
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_FONT_KEY, activeFont); // Gem aktiv skrifttype
+    localStorage.setItem(LOCAL_STORAGE_FONT_KEY, activeFont); // Save active font
   }, [activeFont]);
 
   return {
@@ -67,10 +67,9 @@ export function usePersistentSettings() {
     setActiveTheme,
     fontSizeMultiplier,
     setFontSizeMultiplier,
-    activeFont, // Returner activeFont
-    setActiveFont, // Returner setActiveFont
+    activeFont, // Return activeFont
+    setActiveFont, // Return setActiveFont
     slideLayoutOptions,
     setSlideLayoutOptions,
   };
 }
-

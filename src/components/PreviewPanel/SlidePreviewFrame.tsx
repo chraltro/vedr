@@ -10,7 +10,7 @@ export default function SlidePreviewFrame() {
       <div
         className={`w-full aspect-video rounded-md flex items-center justify-center text-nord4 italic font-[200]  bg-nord0 z-1 ease-linear  absolute ${loading ? "opacity-100" : "opacity-0 "}  duration-500`}
       >
-        <div className={`${loading ? "opacity-100" : "opacity-0"}`}>weaving your slides...</div>
+        <div className={`${loading ? "opacity-100" : "opacity-0"}`}>Weaving your slides...</div>
       </div>
       <iframe
         srcDoc={previewHtml}

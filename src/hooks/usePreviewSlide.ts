@@ -5,13 +5,13 @@ import {
   exportSingleSlideToHtml,
   generateFontSizesCss,
   generateThemeCss,
-  fontFamilies, // Importer fontFamilies
+  fontFamilies, // Import fontFamilies
 } from "@/utils/export-utils";
 import { themes } from "@/utils/themes";
 
 export function usePreviewSlide(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
   const [previewHtml, setPreviewHtml] = useState<string>("");
-  const { currentSlide, slideLayoutOptions, currentSlideText, fontSizeMultiplier, activeTheme, activeFont } = // Hent activeFont
+  const { currentSlide, slideLayoutOptions, currentSlideText, fontSizeMultiplier, activeTheme, activeFont } = // Get activeFont
     useSlideContext();
   const [ismarkdownEmpty, setIsMarkdownEmpty] = useState(true);
   useEffect(() => {
@@ -88,23 +88,23 @@ export function usePreviewSlide(iframeRef: React.RefObject<HTMLIFrameElement | n
         );
       }
     }
-  }, [activeTheme, activeFont]); // Tilføj activeFont til afhængigheder
+  }, [activeTheme, activeFont]); // Add activeFont to dependencies
 
   useEffect(() => {
     const theme = themes[activeTheme as keyof typeof themes];
-    const css = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]); // Generer CSS med nuværende skrifttype
+    const css = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]); // Generate CSS with current font
     if (iframeRef.current) {
       if (iframeRef.current.contentWindow) {
         iframeRef.current.contentWindow.postMessage(
           {
-            type: "fontFamily", // Ny meddelelsestype for skrifttypefamilie
-            data: css, // Send den opdaterede tema-CSS, som inkluderer font-family variablen
+            type: "fontFamily", // New message type for font family
+            data: css, // Send the updated theme CSS, which includes the font-family variable
           },
           "*",
         );
       }
     }
-  }, [activeFont, activeTheme]); // Udløs, når activeFont eller activeTheme ændres
+  }, [activeFont, activeTheme]); // Trigger when activeFont or activeTheme changes
 
   return {
     previewHtml,

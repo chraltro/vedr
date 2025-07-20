@@ -2,12 +2,12 @@
 import React, { useEffect } from "react";
 import DropDownButton from "../../UI/DropDownButton";
 import { useSlideContext } from "@/context/slideContext";
-import { fontFamilies } from "@/utils/export-utils"; // Importer fontFamilies
+import { fontFamilies } from "@/utils/export-utils"; // Import fontFamilies
 import { Vim } from "@replit/codemirror-vim";
 
 const fontOptions: Record<string, string> = {};
 Object.keys(fontFamilies).forEach((fontKey) => {
-  fontOptions[fontKey] = fontKey; // Vis skrifttypenavn som det er
+  fontOptions[fontKey] = fontKey; // Display font name as is
 });
 
 export default function FontSelector() {
@@ -25,17 +25,17 @@ export default function FontSelector() {
   };
 
   useEffect(() => {
-    Vim.defineEx("font", "f", nextFont); // Ny Vim-kommando for skrifttype
+    Vim.defineEx("font", "f", nextFont); // New Vim command for font
   }, [nextFont]);
 
   return (
     <DropDownButton
-      color="bg-nord10/80 hover:bg-nord10" // Vælg en tydelig farve
+      color="bg-nord10/80 hover:bg-nord10" // Choose a distinct color
       selectedOption={activeFont}
       options={fontOptions}
       onSelect={changeFont}
     >
-      Skrifttype
+      Font
     </DropDownButton>
   );
 }
