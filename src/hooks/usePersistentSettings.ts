@@ -42,7 +42,7 @@ export function usePersistentSettings() {
   // Load initial settings from localStorage
   useEffect(() => {
     const savedMarkdown = localStorage.getItem(LOCAL_STORAGE_MARKDOWN_TEXT_KEY);
-    setMarkdownText(savedMarkdown || slideTemplates.initialMarkdown);
+    setMarkdownText(savedMarkdown || slideTemplates.master);
     setActiveTheme(localStorage.getItem(LOCAL_STORAGE_THEME_KEY) || "nordDark");
     const storedMultiplier = localStorage.getItem(LOCAL_STORAGE_FONT_MULTIPLIER_KEY);
     setFontSizeMultiplier(storedMultiplier ? parseFloat(storedMultiplier) : 1);
