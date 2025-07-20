@@ -12,12 +12,6 @@ export default function FullPreviewButton() {
         title="Preview all slides in a new tab"
       >
         <SlideShowIcon />
-        <span>Start Slide Show</span>
-      </button>
-
-      <button
-        onClick={handleLivePresent}
-        className="relative group flex h-8 w-12 items-center overflow-hidden bg-nord10/80 transition-all duration-300 hover:w-36 hover:z-10 hover:bgIcon />
         <span className="whitespace-nowrap">Start Slide Show</span>
       </button>
 
