@@ -274,7 +274,7 @@ html, body {
 }
 .slide pre {
   overflow:unset !important;
-  margin: 1em 2% !important;
+  margin: 0.5em 2% !important;
   border-radius: 1vw;
   color: var(--code-text);
   padding: 2% 4% !important;
