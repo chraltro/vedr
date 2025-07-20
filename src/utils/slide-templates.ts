@@ -1,4 +1,81 @@
 export const slideTemplates = {
+  master: `# The Master Template
+A showcase of all features in one place.
+> Create slides with the speed of thought, powered by Markdown and Vim.
+
+## The Core Essentials
+This slide covers the basics of text and lists.
+
+1.  **Styling**: *Italic*, **Bold**, ~~Strikethrough~~, and \`inline code\`.
+2.  **Lists**:
+    *   Unordered items for flexibility.
+    *   Nesting is supported for sub-items.
+3.  **Tasks**: A great way to track progress.
+    * [x] Demonstrate all core features.
+    * [ ] Add more creative examples.
+    * [ ] Share with the world!
+
+---
+> A horizontal rule for a dramatic pause.
+
+## Code & Data
+Display syntax-highlighted code and structured tables.
+
+\`\`\`javascript
+// Fetch data and display it.
+async function fetchData(url) {
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log('Data fetched:', data);
+  return data;
+}
+\`\`\`
+
+| Feature      | Status     | Alignment |
+| :----------- | :--------: | --------: |
+| Live Preview | Functional |      Good |
+| Vim Mode     | Enabled    |      Good |
+| Exporting    | Working    |      Good |
+
+## Visuals & Quotes
+Combine images, links, and nested blockquotes.
+
+![A placeholder image](https://i.ibb.co/qMjBm5yx/M.png)
+
+> This tool is **amazing**.
+>> It simplifies the entire presentation workflow.
+>> - A Happy User
+
+For more, visit the [official repository](https://github.com/dijith-481/mdpresentation).
+
+## The Language of Math ($KaTeX$)
+Render beautiful mathematical formulas, from simple to complex.
+
+- **Inline**: The Pythagorean theorem is $a^2 + b^2 = c^2$.
+- **Block**: The quadratic formula gives us the roots of $ax^2 + bx + c = 0$.
+$$
+x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}
+$$
+- **Matrices**: You can even render complex matrices.
+$
+A = \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}
+$
+
+## Pro-Tips & Tricks
+Master the editor with these handy commands.
+
+*   **Vim Commands**:
+    *   \`:w\` - Save as Markdown file.
+    *   \`:ws\` - Save as HTML slides.
+    *   \`:u\` - Upload a file.
+    *   \`:p\` - Preview full slideshow.
+    *   \`:t\` - Cycle to the next theme.
+    *   \`:f\` - Cycle to the next font.
+    *   \`:page\` - Toggle page numbers.
+*   **Keyboard Shortcuts**:
+    *   \`Ctrl+S\` to save, \`Ctrl+O\` to upload.
+    *   Use \`i\` to focus the editor anytime.
+`,
   basic: `# Presentation Template
     this is a presentation template
 
