@@ -2,13 +2,15 @@
 export interface FontCache {
   inter: string | null;
   iosevka: string | null;
-  diatype: string | null; // Add diatype to cache
+  diatype: string | null;
+  satoshi: string | null;
 }
 
 const fontCache: FontCache = {
   inter: null,
   iosevka: null,
-  diatype: null, // Initialize diatype
+  diatype: null,
+  satoshi: null,
 };
 
 async function fileToBase64(file: File): Promise<string> {
@@ -63,19 +65,21 @@ export async function getEncodedFonts(): Promise<FontCache> {
     // Log the BASE_PATH to help debug deployment issues
     console.log(`Current BASE_PATH: ${BASE_PATH}`);
 
-    if (fontCache.inter && fontCache.iosevka && fontCache.diatype) { // Check all fonts
+    if (fontCache.inter && fontCache.iosevka && fontCache.diatype && fontCache.satoshi) { // Check all fonts
       return { ...fontCache };
     }
 
-    const [interBase64, iosevkaBase64, diatypeBase64] = await Promise.all([ // Get diatype
+    const [interBase64, iosevkaBase64, diatypeBase64, satoshiBase64] = await Promise.all([
       fetchAndEncodeFont("InterVariable.woff2"),
       fetchAndEncodeFont("iosevka.woff2"),
-      fetchAndEncodeFont("abcdiatype.woff2"), // Updated to new filename
+      fetchAndEncodeFont("abcdiatype.woff2"),
+      fetchAndEncodeFont("satoshi.woff2"),
     ]);
 
     fontCache.inter = interBase64;
     fontCache.iosevka = iosevkaBase64;
-    fontCache.diatype = diatypeBase64; // Store diatype
+    fontCache.diatype = diatypeBase64;
+    fontCache.satoshi = satoshiBase64;
 
     return { ...fontCache };
   } catch (error) {

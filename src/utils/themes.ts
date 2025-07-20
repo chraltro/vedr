@@ -56,6 +56,13 @@ export const themes = {
     "--primary-color": "#FFFFFF",
     "--secondary-color": "#CCCCCC",
   },
+  altro: {
+    "--background-color": "#FFFFFF",
+    "--background-color-secondary": "#e1f5bd",
+    "--text-color": "#000000",
+    "--primary-color": "#ccf581",
+    "--secondary-color": "#9ba2c6",
+  },
 };
 
 export type Theme = {

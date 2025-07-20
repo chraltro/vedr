@@ -19,6 +19,7 @@ export const fontFamilies = {
   Inter: "'Inter', sans-serif",
   Iosevka: "'Iosevka', monospace",
   abcdiatype: "'abcdiatype', sans-serif",
+  Satoshi: "'Satoshi', sans-serif",
 };
 
 export function generateThemeCss(theme?: Theme, activeFontFamily?: string): string {
@@ -468,6 +469,17 @@ function generateAllFontFaces(encodedFonts: FontCache): string {
     @font-face {
         font-family: 'abcdiatype';
         src: url('data:font/woff2;base64,${encodedFonts.diatype}') format('woff2');
+        font-weight: 100 900;
+        font-display: swap;
+        font-style: normal;
+    }
+    `;
+  }
+  if (encodedFonts.satoshi) {
+    fontFaces += `
+    @font-face {
+        font-family: 'Satoshi';
+        src: url('data:font/woff2;base64,${encodedFonts.satoshi}') format('woff2');
         font-weight: 100 900;
         font-display: swap;
         font-style: normal;
