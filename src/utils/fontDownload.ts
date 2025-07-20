@@ -1,3 +1,4 @@
+// src\utils\fontDownload.ts
 export interface FontCache {
   inter: string | null;
   iosevka: string | null;
@@ -21,18 +22,27 @@ async function fileToBase64(file: File): Promise<string> {
   });
 }
 
+// Get the base path from environment variables
+// Ensure this is properly picked up during the build process
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 async function fetchAndEncodeFont(fontPath: string): Promise<string> {
   try {
-    const response = await fetch(fontPath);
+    // Construct the full URL for the asset
+    // Trim leading slash from fontPath if it exists to avoid //
+    const assetRelativePath = fontPath.startsWith('/') ? fontPath.substring(1) : fontPath;
+    const fullUrl = `${BASE_PATH}/${assetRelativePath}`; // Ensure BASE_PATH is applied
+
+    const response = await fetch(fullUrl); // Use the corrected full URL
     if (!response.ok) {
-      throw new Error(`Failed to fetch font: ${response.statusText}`);
+      throw new Error(`Failed to fetch font from ${fullUrl}: ${response.statusText || response.status}`);
     }
 
     const blob = await response.blob();
     const file = new File([blob], fontPath.split("/").pop() || "");
     return await fileToBase64(file);
   } catch (error) {
-    console.error(`Error encoding font from ${fontPath}:`, error);
+    console.error(`Error encoding font from ${fontPath} (attempted URL: ${BASE_PATH}${fontPath}):`, error);
     throw error;
   }
 }
@@ -44,8 +54,9 @@ export async function getEncodedFonts(): Promise<FontCache> {
     }
 
     const [interBase64, iosevkaBase64] = await Promise.all([
-      fetchAndEncodeFont("/InterVariable.woff2"),
-      fetchAndEncodeFont("/iosevka.woff2"),
+      // Pass relative paths as they are here, the fetchAndEncodeFont will handle prepending BASE_PATH
+      fetchAndEncodeFont("InterVariable.woff2"), // No leading slash
+      fetchAndEncodeFont("iosevka.woff2"),       // No leading slash
     ]);
 
     fontCache.inter = interBase64;
@@ -54,7 +65,6 @@ export async function getEncodedFonts(): Promise<FontCache> {
     return { ...fontCache };
   } catch (error) {
     console.error("Error getting encoded fonts:", error);
-
     throw error;
   }
 }

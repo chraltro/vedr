@@ -8,8 +8,10 @@ export const prismScripts = `
 </script>
 `;
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 export async function getprsmCss() {
-  const response = await fetch("/prism.css");
+  const response = await fetch(`${BASE_PATH}/prism.css`);
   if (!response.ok) {
     return "";
   }
@@ -18,7 +20,7 @@ export async function getprsmCss() {
 }
 
 export async function getprismJs() {
-  const response = await fetch("/prism.js");
+  const response = await fetch(`${BASE_PATH}/prism.js`);
   if (!response.ok) {
     return "";
   }

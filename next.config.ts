@@ -1,8 +1,8 @@
+// next.config.ts
 import type { NextConfig } from "next";
 
 const isProd = process.env.NODE_ENV === "production";
-// *** CHANGE THIS LINE ***
-const repoName = "mdpresentation";
+const repoName = "mdpresentation"; // <-- ENSURE THIS IS EXACTLY "mdpresentation"
 
 const nextConfig: NextConfig = {
   devIndicators: false,
@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
   assetPrefix: isProd ? `/${repoName}/` : "",
   images: {
     unoptimized: true,
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? `/${repoName}` : "",
   },
 };
 
