@@ -3,7 +3,7 @@ import { useSlideContext } from "@/context/slideContext";
 import { themes } from "@/utils/themes";
 
 export default function useExportFunctions() {
-  const { markdownText, slideLayoutOptions, fontSizeMultiplier, activeTheme } = useSlideContext();
+  const { markdownText, slideLayoutOptions, fontSizeMultiplier, activeTheme, activeFont } = useSlideContext(); // Hent activeFont
 
   async function createHtmlBlob(documentTitle: string): Promise<Blob> {
     const theme = themes[activeTheme as keyof typeof themes];
@@ -17,6 +17,7 @@ export default function useExportFunctions() {
         documentTitle,
         theme,
         fontSizeMultiplier,
+        activeFont, // Send activeFont
       );
       return new Blob([htmlContent], { type: "text/html;charset=utf-8;" });
     } catch (error) {
@@ -96,3 +97,4 @@ export default function useExportFunctions() {
     getFilenameFromFirstH1,
   };
 }
+

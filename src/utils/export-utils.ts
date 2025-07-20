@@ -4,7 +4,7 @@ import { PAGE_NUMBER_SLIDE_ID } from "@/utils/local-storage";
 import { themes } from "./themes";
 import { Theme } from "./themes";
 import { getprsmCss, getprismJs, getKatexCss } from "./export-consts";
-import { getEncodedFonts } from "./fontDownload";
+import { getEncodedFonts, FontCache } from "./fontDownload"; // Importer FontCache
 import markedKatex from "marked-katex-extension";
 
 const options = {
@@ -15,7 +15,14 @@ marked.use(markedKatex(options));
 
 const defaultTheme = themes.nordDark;
 
-export function generateThemeCss(theme?: Theme): string {
+// Definer tilgængelige skrifttypefamilier og deres CSS-værdier
+export const fontFamilies = {
+  Inter: "'Inter', sans-serif",
+  Iosevka: "'Iosevka', monospace",
+  "ABC Diatype": "'ABC Diatype', sans-serif", // Tilføj den nye skrifttype
+};
+
+export function generateThemeCss(theme?: Theme, activeFontFamily?: string): string { // Tilføj activeFontFamily parameter
   const coreTheme = theme || defaultTheme;
 
   const finalTheme: Record<string, string> = {
@@ -38,6 +45,7 @@ export function generateThemeCss(theme?: Theme): string {
     "--navigation-button-hover-background": coreTheme["--primary-color"],
     "--navigation-button-color": coreTheme["--background-color"],
     "--navigation-counter-color": coreTheme["--text-color"],
+    "--slide-font-family": activeFontFamily || fontFamilies.Inter, // Brug valgt skrifttypefamilie
   };
 
   let css = ":root {\n";
@@ -100,7 +108,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  font-family: 'Inter', sans-serif ;
+  font-family: var(--slide-font-family); /* Brug CSS-variabel for skrifttypefamilie */
 
   background-color: var(--background-color);
   color: var(--text-color);
@@ -251,7 +259,7 @@ min-width: 70% ;
 .slide pre code {
   background-color: transparent;
   color: var(--code-text);
-font-family: Iosevka, monospace !important;
+font-family: Iosevka, monospace !important; /* Behold Iosevka for kodeblokke */
 font-size: inherit;
 }
 .slide code:not(pre code) {
@@ -259,7 +267,7 @@ font-size: inherit;
   color: var(--inline-code-text);
   padding: 0.1% 1%;
   border-radius: 0.5vw;
-font-family: Iosevka, monospace !important;
+font-family: Iosevka, monospace !important; /* Behold Iosevka for inline kode */
 font-size: calc(var(--slide-font-size) * 0.9 );
 font-weight:300;
 }
@@ -333,7 +341,7 @@ text-decoration-thickness: 5%;
   color: var(--header-footer-color);
   padding: 3vmin 3.5vmin;
   z-index: 10;
-font-family: Inter;
+font-family: var(--slide-font-family); /* Brug CSS-variabel for skrifttypefamilie */
 font-weight:400;
   white-space: nowrap;
 }
@@ -418,38 +426,51 @@ background-color: var(--secondary-color) !important;
 }
 `;
 
+// Hjælpefunktion til at generere alle font-face regler
+function generateAllFontFaces(encodedFonts: FontCache): string {
+  let fontFaces = `
+    @font-face{
+        font-family: 'Inter';
+        src: url('data:font/woff2;base64,${encodedFonts.inter}') format('woff2');
+        font-weight: 100..1000;
+        font-display: swap; 
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Iosevka';
+        src: url('data:font/woff2;base64,${encodedFonts.iosevka}') format('woff2');
+        font-weight: 400;
+        font-display: swap;
+        font-style: normal;
+    }
+    @font-face { /* Ny font-face for ABC Diatype */
+        font-family: 'ABC Diatype';
+        src: url('data:font/woff2;base64,${encodedFonts.diatype}') format('woff2');
+        font-weight: 400; /* Juster efter behov for din skrifttype */
+        font-display: swap;
+        font-style: normal;
+    }
+  `;
+  return fontFaces;
+}
+
+
 export async function exportToCustomSlidesHtml(
   fullMarkdown: string,
   layoutOptions?: SlideLayoutOptions,
   documentTitle?: string,
   theme?: Theme,
   fontSizeMultiplier?: number,
+  activeFont?: string, // Tilføj activeFont parameter
 ): Promise<string> {
   const hasCode = hasCodeBlocks(fullMarkdown);
-  const { inter, iosevka } = await getEncodedFonts();
-  const themeCss = generateThemeCss(theme);
+  const encodedFonts = await getEncodedFonts(); // Hent alle kodede skrifttyper
+  const themeCss = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]); // Send activeFontFamily
   const fontSizesCss = generateFontSizesCss(fontSizeMultiplier);
 
   const styles = `
     <style>
-       @font-face{
-          font-family: 'Inter';
-          src: url('data:font/woff2;base64,${inter}') format('woff2');
-          font-weight: 100..1000;
-          font-display: swap; 
-          font-style: normal;
-      }
-      ${
-        hasCode
-          ? `@font-face {
-                font-family: 'Iosevka';
-                src: url('data:font/woff2;base64,${iosevka}') format('woff2');
-                font-weight: 400;
-                font-display: swap;
-                font-style: normal;
-            }`
-          : ""
-      }
+      ${generateAllFontFaces(encodedFonts)} /* Inkluder alle font faces */
       ${fontSizesCss}
       ${themeCss}
       ${multiSlideCss}
@@ -828,31 +849,19 @@ export async function exportSingleSlideToHtml(
   slideMarkdown: string | null,
   currentPageNo: number,
   layoutOptions?: SlideLayoutOptions,
+  activeFont?: string, // Tilføj activeFont parameter
 ) {
-  const themeCss = generateThemeCss(theme);
+  const themeCss = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]); // Send activeFontFamily
   const fontSizesCss = generateFontSizesCss(fontSizeMultiplier);
   const prismCss = await getprsmCss();
   const prismJs = await getprismJs();
   const katexCss = await getKatexCss();
-  const { inter, iosevka } = await getEncodedFonts();
+  const encodedFonts = await getEncodedFonts(); // Hent alle kodede skrifttyper
   const body = await exportSingleSlideToHtmlbody(slideMarkdown, currentPageNo, layoutOptions);
 
   const styles = `
     <style>
-      @font-face{
-        font-family: 'Inter';
-        src: url('data:font/woff2;base64,${inter}') format('woff2');
-        font-weight: 100..1000;
-        font-display: swap; 
-        font-style: normal;
-      }
-      @font-face {
-        font-family: 'Iosevka';
-        src: url('data:font/woff2;base64,${iosevka}') format('woff2');
-        font-weight: 400;
-        font-display: swap;
-        font-style: normal;
-      }
+      ${generateAllFontFaces(encodedFonts)} /* Inkluder alle font faces */
       ${prismCss}
       ${katexCss}
       ${themeCss}
@@ -902,6 +911,8 @@ export async function exportSingleSlideToHtml(
           event.data.data;
       } else if (event.data.type === "theme") {
         document.getElementsByClassName("theme-css")[0].innerHTML = event.data.data;
+      } else if (event.data.type === "fontFamily") { // Håndter skrifttypefamilieopdateringer
+        document.getElementsByClassName("theme-css")[0].innerHTML = event.data.data; // theme-css indeholder font-family variabel
       }
 
       const slide = document.querySelector(".slide");
@@ -930,3 +941,4 @@ ${body}
 </html>
   `;
 }
+

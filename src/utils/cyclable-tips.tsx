@@ -4,7 +4,7 @@ export const cyclingTips = [
     key: "focus",
     content: (
       <>
-        Press   <kbd>i</kbd> to focus editor
+        Tryk   <kbd>i</kbd> for at fokusere editoren
       </>
     ),
   },
@@ -13,7 +13,7 @@ export const cyclingTips = [
     content: (
       <>
         Vim: <kbd>dd</kbd>
-        to delete your regrets one at a time <HeartIcon /> {/* FIXED HERE */}
+        for at slette dine fortrydelser én ad gangen <HeartIcon /> {/* FIXED HERE */}
       </>
     ),
   },
@@ -21,7 +21,7 @@ export const cyclingTips = [
     key: "vimSaveMd",
     content: (
       <>
-        Vim:   <kbd>:w</kbd> to save .md
+        Vim:   <kbd>:w</kbd> for at gemme .md
       </>
     ),
   },
@@ -37,7 +37,7 @@ export const cyclingTips = [
     key: "vimSaveSlides",
     content: (
       <>
-        Vim:  <kbd>:ws</kbd> to save Slides
+        Vim:  <kbd>:ws</kbd> for at gemme Slides
       </>
     ),
   },
@@ -45,7 +45,7 @@ export const cyclingTips = [
     key: "hjklGoBrrr",
     content: (
       <>
-        Not making slides? Then <code>hjkl</code> go hlkj;hkl;!
+        Laver du ikke slides? Så <code>hjkl</code> go hlkj;hkl;!
       </>
     ),
   },
@@ -54,7 +54,7 @@ export const cyclingTips = [
     content: (
       <>
         Vim:   <kbd>:u</kbd>
-        to upload file
+        for at uploade fil
       </>
     ),
   },
@@ -63,7 +63,7 @@ export const cyclingTips = [
     content: (
       <>
         Vim:   <kbd>:p</kbd>
-        to Start Slide Show
+        for at starte slideshow
       </>
     ),
   },
@@ -71,7 +71,7 @@ export const cyclingTips = [
     key: "slidesSyntax",
     content: (
       <>
-        Slides: Use <code># Title</code> / <code>## Heading</code>.
+        Slides: Brug <code># Titel</code> / <code>## Overskrift</code>.
       </>
     ),
   },
@@ -85,11 +85,11 @@ export const cyclingTips = [
           target="_blank"
           rel="noopener noreferrer"
         >
-          Made with{"  "}
+          Lavet med{"  "}
           <span className="text-nord11 rotate-2">
             <HeartIcon />
           </span>
-          {"  "}& vim by <span className="text-nord9/60 underline ">dijith</span>
+          {"  "}& vim af <span className="text-nord9/60 underline ">dijith</span>
         </a>
       </>
     ),
@@ -99,7 +99,7 @@ export const cyclingTips = [
     content: (
       <>
         <a href="https://github.com/dijith-481/mdpresentation" target="_blank" rel="noopener noreferrer">
-          Enjoying md Presentation? Give it a <span style={{ color: "#5e81ac" }}>★</span> on GitHub !
+          Nyder du md Presentation? Giv den en <span style={{ color: "#5e81ac" }}>★</span> på GitHub!
         </a>
       </>
     ),
@@ -109,7 +109,7 @@ export const cyclingTips = [
     content: (
       <>
         Vim:<kbd>ggVG</kbd>
-        to select all your deepest desires at once
+        for at vælge alle dine dybeste ønsker på én gang
       </>
     ),
   },
@@ -117,7 +117,7 @@ export const cyclingTips = [
     key: "tagline",
     content: (
       <>
-        md Presentation: <i> Markdown, beautifully woven. </i>
+        md Presentation: <i> Markdown, smukt vævet. </i>
       </>
     ),
   },
@@ -126,8 +126,17 @@ export const cyclingTips = [
     content: (
       <>
         Vim: <kbd>ggdG</kbd>
-        to delete all content
+        for at slette alt indhold
+      </>
+    ),
+  },
+  {
+    key: "vimFont", // Nyt tip til skrifttypevalg
+    content: (
+      <>
+        Vim: <kbd>:f</kbd> for at skifte skrifttype
       </>
     ),
   },
 ];
+

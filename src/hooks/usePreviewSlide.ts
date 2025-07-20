@@ -5,12 +5,13 @@ import {
   exportSingleSlideToHtml,
   generateFontSizesCss,
   generateThemeCss,
+  fontFamilies, // Importer fontFamilies
 } from "@/utils/export-utils";
 import { themes } from "@/utils/themes";
 
 export function usePreviewSlide(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
   const [previewHtml, setPreviewHtml] = useState<string>("");
-  const { currentSlide, slideLayoutOptions, currentSlideText, fontSizeMultiplier, activeTheme } =
+  const { currentSlide, slideLayoutOptions, currentSlideText, fontSizeMultiplier, activeTheme, activeFont } = // Hent activeFont
     useSlideContext();
   const [ismarkdownEmpty, setIsMarkdownEmpty] = useState(true);
   useEffect(() => {
@@ -30,6 +31,7 @@ export function usePreviewSlide(iframeRef: React.RefObject<HTMLIFrameElement | n
         currentSlideText,
         currentSlide,
         slideLayoutOptions,
+        activeFont, // Send activeFont
       );
 
       setPreviewHtml(html);
@@ -74,7 +76,7 @@ export function usePreviewSlide(iframeRef: React.RefObject<HTMLIFrameElement | n
 
   useEffect(() => {
     const theme = themes[activeTheme as keyof typeof themes];
-    const css = generateThemeCss(theme);
+    const css = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]); // Send activeFontFamily
     if (iframeRef.current) {
       if (iframeRef.current.contentWindow) {
         iframeRef.current.contentWindow.postMessage(
@@ -86,9 +88,26 @@ export function usePreviewSlide(iframeRef: React.RefObject<HTMLIFrameElement | n
         );
       }
     }
-  }, [activeTheme]);
+  }, [activeTheme, activeFont]); // Tilføj activeFont til afhængigheder
+
+  useEffect(() => {
+    const theme = themes[activeTheme as keyof typeof themes];
+    const css = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]); // Generer CSS med nuværende skrifttype
+    if (iframeRef.current) {
+      if (iframeRef.current.contentWindow) {
+        iframeRef.current.contentWindow.postMessage(
+          {
+            type: "fontFamily", // Ny meddelelsestype for skrifttypefamilie
+            data: css, // Send den opdaterede tema-CSS, som inkluderer font-family variablen
+          },
+          "*",
+        );
+      }
+    }
+  }, [activeFont, activeTheme]); // Udløs, når activeFont eller activeTheme ændres
 
   return {
     previewHtml,
   };
 }
+

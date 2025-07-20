@@ -7,6 +7,7 @@ export interface SlideContextState {
   markdownText: string;
   activeTheme: string;
   fontSizeMultiplier: number;
+  activeFont: string; // Tilføj activeFont
   currentSlideText: string | null;
   slideLayoutOptions: SlideLayoutOptions;
   currentSlide: number;
@@ -19,6 +20,7 @@ interface SlideContextType extends SlideContextState {
   setMarkdownText: (markdownText: string) => void;
   setActiveTheme: (activeTheme: string) => void;
   setFontSizeMultiplier: React.Dispatch<React.SetStateAction<number>>;
+  setActiveFont: (font: string) => void; // Tilføj setActiveFont
   setCurrentSlideText: (currentSlideText: string) => void;
   setSlideLayoutOptions: React.Dispatch<React.SetStateAction<SlideLayoutOptions>>;
   setTotalSlidesNumber: (totalSlidesNumber: number) => void;
@@ -43,6 +45,8 @@ export const SlideContextProvider: React.FC<{ children: React.ReactNode }> = ({ 
     setActiveTheme,
     fontSizeMultiplier,
     setFontSizeMultiplier,
+    activeFont, // Hent activeFont fra persistent settings
+    setActiveFont, // Hent setActiveFont fra persistent settings
     slideLayoutOptions,
     setSlideLayoutOptions,
   } = usePersistentSettings();
@@ -61,6 +65,8 @@ export const SlideContextProvider: React.FC<{ children: React.ReactNode }> = ({ 
     setActiveTheme,
     fontSizeMultiplier,
     setFontSizeMultiplier,
+    activeFont, // Tilbyd activeFont
+    setActiveFont, // Tilbyd setActiveFont
     currentSlideText,
     setCurrentSlideText,
     currentSlide,
@@ -74,3 +80,4 @@ export const SlideContextProvider: React.FC<{ children: React.ReactNode }> = ({ 
   };
   return <SlideContext.Provider value={contextValue}>{children}</SlideContext.Provider>;
 };
+
