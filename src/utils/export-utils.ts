@@ -22,31 +22,78 @@ export const fontFamilies = {
   Satoshi: "'Satoshi', sans-serif",
 };
 
+/**
+ * Determines if a hex color is dark by calculating its luminance.
+ * @param color - The hex color string (e.g., "#FFFFFF").
+ * @returns True if the color is dark, false otherwise.
+ */
+function isColorDark(color: string): boolean {
+  const R = parseInt(color.substring(1, 3), 16);
+  const G = parseInt(color.substring(3, 5), 16);
+  const B = parseInt(color.substring(5, 7), 16);
+  const luminance = 0.299 * R + 0.587 * G + 0.114 * B;
+  return luminance < 140; // Threshold for perceived darkness
+}
+
+/**
+ * Lightens or darkens a hex color by a given percentage.
+ * @param color - The hex color string.
+ * @param percent - The percentage to lighten (positive) or darken (negative).
+ * @returns The new hex color string.
+ */
+function shadeColor(color: string, percent: number): string {
+  let R = parseInt(color.substring(1, 3), 16);
+  let G = parseInt(color.substring(3, 5), 16);
+  let B = parseInt(color.substring(5, 7), 16);
+
+  R = Math.round((R * (100 + percent)) / 100);
+  G = Math.round((G * (100 + percent)) / 100);
+  B = Math.round((B * (100 + percent)) / 100);
+
+  R = R < 255 ? R : 255;
+  G = G < 255 ? G : 255;
+  B = B < 255 ? B : 255;
+
+  R = R > 0 ? R : 0;
+  G = G > 0 ? G : 0;
+  B = B > 0 ? B : 0;
+
+  const RR = R.toString(16).padStart(2, "0");
+  const GG = G.toString(16).padStart(2, "0");
+  const BB = B.toString(16).padStart(2, "0");
+
+  return `#${RR}${GG}${BB}`;
+}
+
 export function generateThemeCss(theme?: Theme, activeFontFamily?: string): string {
   const coreTheme = theme || defaultTheme;
+  const mainBg = coreTheme["--background-color"];
+
+  // Dynamically calculate code background based on your exact rule
+  const codeBlockBackground = isColorDark(mainBg)
+    ? shadeColor(mainBg, 10) // 10% brighter for dark themes
+    : shadeColor(mainBg, -6); // 6% darker for light themes
+
   const finalTheme: Record<string, string> = {
     ...coreTheme,
-    // General Slide Styles
     "--heading-color": coreTheme["--primary-color"],
     "--inline-code-text": coreTheme["--primary-color"],
-    "--code-background": coreTheme["--background-color-secondary"], // Correctly uses the secondary background
+    "--code-background": codeBlockBackground,
     "--code-text": coreTheme["--text-color"],
     "--hr-color": coreTheme["--primary-color"],
     "--table-border-color": coreTheme["--primary-color"],
     "--table-header-background": coreTheme["--primary-color"],
-    "--table-even-row-background": `${coreTheme["--background-color-secondary"]}`,
-    "--blockquote-background-color": coreTheme["--background-color-secondary"],
+    "--table-even-row-background": shadeColor(mainBg, isColorDark(mainBg) ? 5 : -3),
+    "--blockquote-background-color": codeBlockBackground,
     "--link-color": coreTheme["--primary-color"],
     "--link-hover-color": coreTheme["--secondary-color"],
     "--header-footer-color": `${coreTheme["--primary-color"]}d0`,
     "--navigation-button-background": `${coreTheme["--primary-color"]}9a`,
-    "--navigation-button-disabled-background": coreTheme["--background-color-secondary"],
+    "--navigation-button-disabled-background": codeBlockBackground,
     "--navigation-button-hover-background": coreTheme["--primary-color"],
     "--navigation-button-color": coreTheme["--background-color"],
     "--navigation-counter-color": coreTheme["--text-color"],
     "--slide-font-family": activeFontFamily || fontFamilies.Inter,
-
-    // Improved Syntax Highlighting Variables
     "--token-comment": `${coreTheme["--text-color"]}99`,
     "--token-punctuation": `${coreTheme["--text-color"]}aa`,
     "--token-property-etc": coreTheme["--secondary-color"],
