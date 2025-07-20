@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -14,27 +13,27 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Markweavia",
-    template: "%s - Markweavia",
+    default: "md Presentation", // Changed
+    template: "%s - md Presentation", // Changed
   },
   description:
-    "A no-nonsense tool for crafting minimalist, professional platform-independant presentations directly from Markdown using familiar Vim motions.",
+    "A no-nonsense tool for crafting minimalist, professional platform-independant presentations directly from Markdown using familiar Vim motions.", // Description remains same, focuses on functionality
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Markweavia",
+    title: "md Presentation", // Changed
     description:
-      "A no-nonsense tool for crafting minimalist, professional platform-independant presentations directly from Markdown using familiar Vim motions.",
-    url: "https://markweavia.vercel.app",
-    siteName: "Markweavia",
+      "A no-nonsense tool for crafting minimalist, professional platform-independant presentations directly from Markdown using familiar Vim motions.", // Description remains same
+    url: "https://chraltro.github.io/mdpresentation", // Changed URL to your GitHub Pages
+    siteName: "md Presentation", // Changed
     images: [
       {
-        url: "https://markweavia.vercel.app/image.png",
+        url: "https://chraltro.github.io/mdpresentation/image.png", // Changed URL to your GitHub Pages
         width: 1200,
         height: 630,
-        alt: "Markweavia - Markdown Presentation Tool",
+        alt: "md Presentation - Markdown Presentation Tool", // Changed
       },
     ],
     locale: "en_US",
@@ -42,10 +41,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Markweavia",
+    title: "md Presentation", // Changed
     description:
-      "A no-nonsense tool for crafting minimalist, professional platform-independant presentations directly from Markdown using familiar Vim motions.",
-    images: ["https://markweavia.vercel.app/editor.png"],
+      "A no-nonsense tool for crafting minimalist, professional platform-independant presentations directly from Markdown using familiar Vim motions.", // Description remains same
+    images: ["https://chraltro.github.io/mdpresentation/editor.png"], // Changed URL to your GitHub Pages
     creator: "@dijith_",
   },
   robots: {
@@ -68,9 +67,10 @@ export const metadata: Metadata = {
     "minimalist slides",
     "offline first",
     "nord theme",
+    "md presentation" // Added new keyword
   ],
   alternates: {
-    canonical: "https://markweavia.vercel.app",
+    canonical: "https://chraltro.github.io/mdpresentation", // Changed URL to your GitHub Pages
   },
 };
 export default function RootLayout({
@@ -81,10 +81,10 @@ export default function RootLayout({
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "Markweavia",
+    name: "md Presentation", // Changed
     description:
-      "A no-nonsense tool for creating professional, platform-independent HTML presentations from Markdown using familiar Vim motions.",
-    url: "https://markweavia.vercel.app",
+      "A no-nonsense tool for creating professional, platform-independent HTML presentations from Markdown using familiar Vim motions.", // Description remains same
+    url: "https://chraltro.github.io/mdpresentation", // Changed URL to your GitHub Pages
     applicationCategory: "Productivity",
     creator: {
       "@type": "Person",

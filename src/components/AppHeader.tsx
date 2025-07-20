@@ -18,7 +18,7 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
       <Link href="/" className=" px-2 w-full">
         <Image
           src="/logo.svg"
-          alt="Markweavia Text Logo"
+          alt="md Presentation Logo" // Changed
           className="  block md:hidden m-0  h-12  "
           width={20}
           height={20}
@@ -26,7 +26,7 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
         />
         <Image
           src="/markweavia.svg"
-          alt="Markweavia Text Logo"
+          alt="md Presentation Text Logo" // Changed
           className=" hidden md:block m-0 h-12   "
           width={180}
           height={40}
@@ -91,7 +91,7 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
           </span>
         </a>
         <a
-          href="https://github.com/dijith-481/markweavia"
+          href="https://github.com/dijith-481/mdpresentation" // Changed URL to your repo
           className="flex flex-row items-center group transition-all  px-1 py-1 rounded-md ease-in-out duration-700  w-10 hover:w-24 overflow-hidden"
         >
           <span className="flex-shrink-0">

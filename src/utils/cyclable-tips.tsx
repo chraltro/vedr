@@ -4,7 +4,7 @@ export const cyclingTips = [
     key: "focus",
     content: (
       <>
-        Press &nbsp; <kbd>i</kbd> to focus editor
+        Press   <kbd>i</kbd> to focus editor
       </>
     ),
   },
@@ -13,7 +13,7 @@ export const cyclingTips = [
     content: (
       <>
         Vim: <kbd>dd</kbd>
-        to delete your regrets one at a time <kbd>&lt;3</kbd>
+        to delete your regrets one at a time <kbd><3</kbd>
       </>
     ),
   },
@@ -21,7 +21,7 @@ export const cyclingTips = [
     key: "vimSaveMd",
     content: (
       <>
-        Vim: &nbsp; <kbd>:w</kbd> to save .md
+        Vim:   <kbd>:w</kbd> to save .md
       </>
     ),
   },
@@ -37,7 +37,7 @@ export const cyclingTips = [
     key: "vimSaveSlides",
     content: (
       <>
-        Vim: &nbsp;<kbd>:ws</kbd> to save Slides
+        Vim:  <kbd>:ws</kbd> to save Slides
       </>
     ),
   },
@@ -53,7 +53,7 @@ export const cyclingTips = [
     key: "vimUpload",
     content: (
       <>
-        Vim: &nbsp; <kbd>:u</kbd>
+        Vim:   <kbd>:u</kbd>
         to upload file
       </>
     ),
@@ -62,7 +62,7 @@ export const cyclingTips = [
     key: "vimpreview",
     content: (
       <>
-        Vim: &nbsp; <kbd>:p</kbd>
+        Vim:   <kbd>:p</kbd>
         to Start Slide Show
       </>
     ),
@@ -98,8 +98,8 @@ export const cyclingTips = [
     key: "githubStar",
     content: (
       <>
-        <a href="https://github.com/dijit-481/markweavia" target="_blank" rel="noopener noreferrer">
-          Enjoying Markweavia? Give it a <span style={{ color: "#5e81ac" }}>★</span> on GitHub !
+        <a href="https://github.com/dijith-481/mdpresentation" target="_blank" rel="noopener noreferrer"> {/* Changed URL */}
+          Enjoying md Presentation? Give it a <span style={{ color: "#5e81ac" }}>★</span> on GitHub ! {/* Changed */}
         </a>
       </>
     ),
@@ -117,7 +117,7 @@ export const cyclingTips = [
     key: "tagline",
     content: (
       <>
-        Markweavia: <i> Markdown, beautifully woven. </i>
+        md Presentation: <i> Markdown, beautifully woven. </i> {/* Changed */}
       </>
     ),
   },

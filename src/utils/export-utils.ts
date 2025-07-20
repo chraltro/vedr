@@ -683,9 +683,9 @@ fullScreenBtn.classList.add("fullscreen-button");
             Made with
             <a
               style="text-decoration: underline"
-              href="https://markweavia.vercel.app"
-              >Markweavia</a
-            >
+              href="https://chraltro.github.io/mdpresentation" // Changed URL to your GitHub Pages
+              >md Presentation</a
+            > {/* Changed */}
           </div>
           <div style="font-size: 1.4dvw; color: var(--primary-color)">
             Markdown, beautifully woven.
@@ -695,7 +695,7 @@ fullScreenBtn.classList.add("fullscreen-button");
 
       <div class="slide-header-footer-item pos-top-right">
         <a
-          href="https://github.com/dijith-481/markweavia"
+          href="https://github.com/dijith-481/mdpresentation" // Changed URL to your GitHub Pages
           style="text-decoration: none"
         >
           <svg
@@ -716,7 +716,7 @@ fullScreenBtn.classList.add("fullscreen-button");
       <div class="slide-header-footer-item pos-bottom-right">
         <a
           style="opacity: 0.4"
-          href="https://markweavia.vercel.app"
+          href="https://chraltro.github.io/mdpresentation" // Changed URL to your GitHub Pages
           style="text-decoration: none"
         >
           Create your own Slides

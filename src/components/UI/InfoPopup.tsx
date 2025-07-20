@@ -72,8 +72,8 @@ export default function InfoPopup({ show, onClose, popupRef }: InfoPopupProps) {
         <p>
           <strong className="text-nord7">Exporting:</strong> Use header buttons or Vim commands.
         </p>
-        <p>for more information on how to use Markweavia check out</p>
-        <a href="https://github.com/dijith-481/markweavia" className="text-nord9 underline text-xs">
+        <p>for more information on how to use md Presentation check out</p> {/* Changed */}
+        <a href="https://github.com/dijith-481/mdpresentation" className="text-nord9 underline text-xs"> {/* Changed URL */}
           Github readme.
         </a>
       </div>

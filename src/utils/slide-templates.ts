@@ -124,147 +124,21 @@ Thank the audience for their time and provide your contact information.
 *   [Your Email](link)
 *   [Your Phone Number](link)`,
   academic: `# College Presentation Template
-        presented by Markweavia
+        presented by md Presentation`, // Changed
+  vim: `# Vim Motions in md Presentation`, // Changed
 
-## Introduction
-
-Welcome! This template provides a starting point for your college presentations. Designed for clarity and efficiency, it helps you convey information effectively.
-
-* Keep content concise and to the point.
-* Use visual aids (images, charts) where appropriate.
-* Practice your delivery for a confident presentation.
-
-
-## Research Overview
-
-### Project Title: [Your Project Title Here]
-### Presenter: [Your Name]
-### Date: [Date]
-
-A brief outline of your research, its goals, and your key findings.
-
-
-## Key Concepts & Definitions
-
-* **Concept 1:** [Explain the first key concept clearly and concisely. Provide examples.]
-* **Concept 2:** [Explain the second key concept. Define any jargon.]
-
-> It's critical for understanding the
->
-> rest of the presentation!
-
-
-## Methodology
-
-### How did you approach this project?
-
-1. **Step 1:** [Describe the first step in your methodology.]
-2. **Step 2:** [Describe the second step. Explain any tools or techniques used.]
-3. **Step 3:** [Describe the final step and the expected outcome.]
-
-
-## Results & Findings
-
-| Metric     | Value   | Significance |
-|:----------:|:-------:|:------------:|
-| Key Metric | [Value] | [Explanation] |
-| Another    | [Value] | [Explanation] |
-
-
-* Summarize your key findings.
-* Use tables or charts to visually represent data.
-
-
-## Discussion & Analysis
-
-* Interpret your results in the context of your research question.
-* Discuss any limitations or challenges encountered.
-* Suggest potential future directions for this research.
-
-## Conclusion
-
-* Reiterate your main findings and their significance.
-* Emphasize the key takeaways from your presentation.
-* Thank the audience for their time and attention.
-
-
-## Q & A
-
-* Be prepared to answer questions from the audience.
-* Use this opportunity to clarify any points and expand on your findings.
-
-
-## References
-
-- [Citation 1](link)
-- [Citation 2](link)
-
-Remember to cite all sources used in your presentation!
-# Thank you slide if you like `,
-
-  vim: `# Vim Motions in Markweavia
-
-## Navigating & Editing
-
-Embrace Vim motions!
-
-*   **Navigation:**
-    *   \`h\`, \`j\`, \`k\`, \`l\` (left, down, up, right)
-    *   \`w\` (next word), \`b\` (previous word)
-    *   \`0\` (beginning of line), \`$\` (end of line)
-    *   \`gg\` (first slide), \`G\` (last slide)
-*   **Editing:**
-    *   \`i\` (insert), \`a\` (append), \`o\` (open below), \`O\` (open above)
-    *   \`dd\` (delete line), \`yy\` (yank line), \`p\` (paste)
-    *   \`u\` (undo), \`Ctrl + r\` (redo)
-
-## Deleting Commands (Vim)
-
-Here are some delete commands to improve editing
-
-| Command | Description                                    |
-|---------|------------------------------------------------|
-| \`dw\`   | Delete word                                   |
-| \`d$\`   | Delete to end of line                          |
-| \`d0\`   | Delete to beginning of line                    |
-| \`diw\`  | Delete inner word (delete word under cursor) |
-
-## Markweavia Commands: Part 1
-
-| Command      | Description                       |
-|--------------|-----------------------------------|
-| \`:u\`         | Upload Current Markdown             |
-| \`:p\`         | Preview Current Slide             |
-| \`:w\`         | Download Slide as Markdown          |
-| \`:ws\`        | Save As Slide (alt. download) |
-
-## Markweavia Commands: Part 2
-
-| Command        | Description                               |
-|----------------|-------------------------------------------|
-| \`:t\`           | Cycle to Next Theme                      |
-| \`:page\`       | Toggle Page Number Display                |
-| \`:h\`          | Cycle through Headers/Footers            |
-| \`ctrl+shift+n\` | New Slide                               |
-| \`ctrl+s\`     | Save                                      |
-
-## Conclusion
-
-Master Vim in Markweavia! Faster slide creation awaits.
-`,
-
-  initialMarkdown: `# [Markweavia](https://markweavia.vercel.app/)
+  initialMarkdown: `# [md Presentation](https://chraltro.github.io/mdpresentation/) // Changed URL
       markdown beautifully woven.
      made with ❤️ by dijith
 ## Overview
 Creating slides should be a straightforward process,
 Traditional presentation software often involves excessive mouse dragging and complex component manipulation for what should be simple text and structure.
- Markweavia was born from the desire to simplify this:
+ md Presentation was born from the desire to simplify this:
  
    
 >Most impactful presentations rely on clear text and 
 >an uncluttered background,
->a philosophy Markweavia aims to embody perfectly
+>a philosophy md Presentation aims to embody perfectly
    
 ## Basic Text Styling
 First, let's look at some fundamental text styling.
@@ -299,7 +173,7 @@ Here's a Python example:
 def greet(name):
   print(f"Hello, {name}!")
   
-greet("Markweavia")
+greet("md Presentation")
 \`\`\`
 - syntax highlighting with \`nord\` theme.
 
@@ -343,7 +217,7 @@ You can also control text alignment within table columns.
 ## Links
 
 Linking to external resources is straightforward.
-Visit [Markweavia](https://markweavia.vercel.app) for weaving markdown slides with latex support.
+Visit [md Presentation](https://chraltro.github.io/mdpresentation) for weaving markdown slides with latex support. // Changed
 You can also use reference-style links if you prefer.
 This is another line to fill space.
 And one more for good measure.
@@ -351,8 +225,8 @@ And one more for good measure.
 ## Images
 
 Displaying images is also possible.
-![Alt Markweavia logo](https://i.ibb.co/qMjBm5yx/M.png)
-Note: The image above is a placeholder  Markweavia logo.)
+![Alt md Presentation logo](https://i.ibb.co/qMjBm5yx/M.png) // Changed
+Note: The image above is a placeholder  md Presentation logo.) // Changed
 >Partial support for now with links
 
 ## Blockquotes
