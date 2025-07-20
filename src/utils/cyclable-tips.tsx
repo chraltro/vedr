@@ -98,7 +98,7 @@ export const cyclingTips = [
     key: "githubStar",
     content: (
       <>
-        <a href="https://github.com/dijith-481/mdpresentation" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/chraltro/mdpresentation" target="_blank" rel="noopener noreferrer">
           Enjoying md Presentation? Give it a <span style={{ color: "#5e81ac" }}>★</span> on GitHub!
         </a>
       </>

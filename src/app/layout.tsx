@@ -26,11 +26,11 @@ export const metadata: Metadata = {
     title: "md Presentation",
     description:
       "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
-    url: "https://github.com/dijith-481/mdpresentation",
+    url: "https://github.com/chraltro/mdpresentation",
     siteName: "md Presentation",
     images: [
       {
-        url: "https://github.com/dijith-481/mdpresentation/image.png",
+        url: "https://github.com/chraltro/mdpresentation/image.png",
         width: 1200,
         height: 630,
         alt: "md Presentation - Markdown Presentation Tool",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "md Presentation",
     description:
       "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
-    images: ["https://github.com/dijith-481/mdpresentation/editor.png"],
+    images: ["https://github.com/chraltro/mdpresentation/editor.png"],
     creator: "@dijith_",
   },
   robots: {
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     "md presentation"
   ],
   alternates: {
-    canonical: "https://github.com/dijith-481/mdpresentation",
+    canonical: "https://github.com/chraltro/mdpresentation",
   },
 };
 export default function RootLayout({
@@ -84,7 +84,7 @@ export default function RootLayout({
     name: "md Presentation",
     description:
       "A no-nonsense tool for creating professional, platform-independent HTML presentations from Markdown using familiar Vim motions.",
-    url: "https://github.com/dijith-481/mdpresentation",
+    url: "https://github.com/chraltro/mdpresentation",
     applicationCategory: "Productivity",
     creator: {
       "@type": "Person",

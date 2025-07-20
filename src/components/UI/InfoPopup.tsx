@@ -76,7 +76,7 @@ export default function InfoPopup({ show, onClose, popupRef }: InfoPopupProps) {
           <strong className="text-nord7">Export:</strong> Use the buttons in the header or Vim commands.
         </p>
         <p>For more information on how to use md Presentation, check</p>
-        <a href="https://github.com/dijith-481/mdpresentation" className="text-nord9 underline text-xs">
+        <a href="https://github.com/chraltro/mdpresentation" className="text-nord9 underline text-xs">
           Github readme.
         </a>
       </div>

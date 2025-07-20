@@ -78,7 +78,7 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
 
       <div className="flex items-center justify-end space-x-2 w-full ">
         <a
-          href="https://github.com/sponsors/dijith-481"
+          href="https://github.com/sponsors/chraltro"
           className="flex flex-row items-center group transition-all px-1 py-1 rounded-md ease-in-out duration-700 w-10 hover:w-24 overflow-hidden"
           target="_blank"
           rel="noopener noreferrer"
@@ -91,7 +91,7 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
           </span>
         </a>
         <a
-          href="https://github.com/dijith-481/mdpresentation"
+          href="https://github.com/chraltro/mdpresentation"
           className="flex flex-row items-center group transition-all  px-1 py-1 rounded-md ease-in-out duration-700  w-10 hover:w-24 overflow-hidden"
         >
           <span className="flex-shrink-0">
