@@ -72,7 +72,7 @@ export function generateThemeCss(theme?: Theme, activeFontFamily?: string): stri
   // Dynamically calculate code background based on your exact rule
   const codeBlockBackground = isColorDark(mainBg)
     ? shadeColor(mainBg, 10) // 10% brighter for dark themes
-    : shadeColor(mainBg, -20); // 20% darker for light themes
+    : shadeColor(mainBg, -6); // 6% darker for light themes
 
   const finalTheme: Record<string, string> = {
     ...coreTheme,
@@ -86,7 +86,7 @@ export function generateThemeCss(theme?: Theme, activeFontFamily?: string): stri
     "--table-even-row-background": shadeColor(mainBg, isColorDark(mainBg) ? 5 : -3),
     "--blockquote-background-color": codeBlockBackground,
     "--link-color": coreTheme["--primary-color"],
-    "--link-hover-color": coreTheme["--secondary-color"],
+    "--link-hover-color": `${coreTheme["--text-color"]}aa`,
     "--header-footer-color": `${coreTheme["--primary-color"]}d0`,
     "--navigation-button-background": `${coreTheme["--primary-color"]}9a`,
     "--navigation-button-disabled-background": codeBlockBackground,
@@ -96,11 +96,11 @@ export function generateThemeCss(theme?: Theme, activeFontFamily?: string): stri
     "--slide-font-family": activeFontFamily || fontFamilies.Inter,
     "--token-comment": `${coreTheme["--text-color"]}99`,
     "--token-punctuation": `${coreTheme["--text-color"]}aa`,
-    "--token-property-etc": coreTheme["--secondary-color"],
+    "--token-property-etc": `${coreTheme["--text-color"]}aa`,
     "--token-string-etc": `${coreTheme["--text-color"]}99`,
     "--token-operator-etc": `${coreTheme["--text-color"]}aa`,
     "--token-keyword": coreTheme["--primary-color"],
-    "--token-function": coreTheme["--secondary-color"],
+    "--token-function": `${coreTheme["--text-color"]}aa`,
     "--token-variable": `${coreTheme["--text-color"]}99`,
   };
   let css = ":root {\n";
