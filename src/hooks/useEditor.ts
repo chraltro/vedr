@@ -45,7 +45,7 @@ export function useEditor(
     const cursorLineNumber = doc.lineAt(currentPos).number;
 
     let inCodeBlock = false;
-    const headingRegex = /^#{1,6} /;
+    const headingRegex = /^#{1,2} /; // Corrected Regex: Only match H1 and H2
     const allHeadingLines: number[] = [];
     let headingsAboveCursor = 0;
     let slideStartLine = -1;
@@ -73,7 +73,6 @@ export function useEditor(
     setCurrentSlide(Math.max(headingsAboveCursor, 1));
     
     if (slideStartLine === -1) {
-      // If cursor is before any headings, show the first slide's content
       if (allHeadingLines.length > 0) {
         const firstHeadingLine = allHeadingLines;
         const nextHeadingLine = allHeadingLines.length > 1 ? allHeadingLines : doc.lines + 1;
@@ -81,7 +80,6 @@ export function useEditor(
         const slideEndPos = doc.line(nextHeadingLine - 1).to;
         setCurrentSlideText(doc.sliceString(slideStartPos, slideEndPos).trim());
       } else {
-        // No headings at all, just show all text
         setCurrentSlideText(doc.toString());
       }
       return;
@@ -97,7 +95,7 @@ export function useEditor(
     const currentSlideContent = doc.sliceString(slideStartPos, slideEndPos).trim();
     setCurrentSlideText(currentSlideContent);
 
-  }, [codeMirrorRef]);
+  }, [codeMirrorRef, setCurrentSlide, setTotalSlidesNumber, setCurrentSlideText]);
 
   const editorUpdateListener = useMemo(
     () =>
@@ -152,14 +150,14 @@ export function useEditor(
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [focusCodeMirror, codeMirrorRef]);
+  }, [focusCodeMirror, codeMirrorRef, handleDownloadMd, triggerFileUpload, handleSaveAsSlides]);
 
   useEffect(() => {
     Vim.defineEx("write", "w", handleDownloadMd);
     Vim.defineEx("wslide", "ws", handleSaveAsSlides);
     Vim.defineEx("upload", "u", triggerFileUpload);
     Vim.defineEx("preview", "p", handlePreviewFullSlides);
-  }, [handleDownloadMd, handleSaveAsSlides]);
+  }, [handleDownloadMd, handleSaveAsSlides, triggerFileUpload, handlePreviewFullSlides]);
 
   return {
     markdownText,
