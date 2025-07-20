@@ -474,12 +474,13 @@ export async function exportToCustomSlidesHtml(
   activeFont: string,
   mode: "export" | "live" = "export",
 ): Promise<string> {
-  const hasCode = hasCodeBlocks(fullMarkdown);
-  const encodedFonts = await getEncodedFonts();
-  const themeCss = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]);
-  const fontSizesCss = generateFontSizesCss(fontSizeMultiplier);
+    const hasCode = hasCodeBlocks(fullMarkdown);
+    const encodedFonts = await getEncodedFonts();
+    const themeCss = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]);
+    const fontSizesCss = generateFontSizesCss(fontSizeMultiplier);
+    const prismJsContent = hasCode ? await getprismJs() : "";
 
-  const styles = `
+    const styles = `
     <style id="font-faces">${generateAllFontFaces(encodedFonts)}</style>
     <style id="prism-styles">${hasCode ? await getprsmCss() : ""}</style>
     <style id="katex-styles">${await getKatexCss()}</style>
@@ -491,6 +492,7 @@ export async function exportToCustomSlidesHtml(
 
   const liveModeScript = `
     <script>
+      ${prismJsContent}
       const channel = new BroadcastChannel('md-presenter-channel');
 
       function updateStyles(stylePayload) {
@@ -578,7 +580,7 @@ export async function exportToCustomSlidesHtml(
       
       function initializeNavigation() {
         slideElements = document.querySelectorAll(".slide");
-        currentSlideIdx = -1; // Force update on first run
+        currentSlideIdx = -1; 
 
         const startBtn = document.getElementById("start-slide");
         const prevBtn = document.getElementById("prev-slide");
@@ -604,80 +606,81 @@ export async function exportToCustomSlidesHtml(
 
   const exportModeScript = `
     <script>
-    ${hasCode ? await getprismJs() : ""}
-    document.addEventListener("DOMContentLoaded", () => {
-      let currentSlideIdx = 0;
-      const slideElements = document.querySelectorAll(".slide");
-      const startBtn = document.getElementById("start-slide");
-      const prevBtn = document.getElementById("prev-slide");
-      const nextBtn = document.getElementById("next-slide");
-      const endBtn = document.getElementById("end-slide");
-      const fullScreenBtn = document.getElementById("fullscreen");
-      const counterElem = document.getElementById("slide-counter");
+      ${prismJsContent}
+      document.addEventListener("DOMContentLoaded", () => {
+        let currentSlideIdx = 0;
+        const slideElements = document.querySelectorAll(".slide");
+        const startBtn = document.getElementById("start-slide");
+        const prevBtn = document.getElementById("prev-slide");
+        const nextBtn = document.getElementById("next-slide");
+        const endBtn = document.getElementById("end-slide");
+        const fullScreenBtn = document.getElementById("fullscreen");
+        const counterElem = document.getElementById("slide-counter");
 
-      function showSlideByIndex(index) {
-        if (!slideElements || slideElements.length === 0) return;
-        const newIndex = Math.max(0, Math.min(index, slideElements.length - 1));
-        if (newIndex === currentSlideIdx) return;
+        function showSlideByIndex(index) {
+          if (!slideElements || slideElements.length === 0) return;
+          const newIndex = Math.max(0, Math.min(index, slideElements.length - 1));
+          if (newIndex === currentSlideIdx) return;
 
-        slideElements[currentSlideIdx].classList.remove("active");
-        slideElements[newIndex].classList.add("active");
-        currentSlideIdx = newIndex;
+          slideElements[currentSlideIdx].classList.remove("active");
+          slideElements[newIndex].classList.add("active");
+          currentSlideIdx = newIndex;
 
-        if (typeof Prism !== "undefined") {
-          Prism.highlightAllUnder(slideElements[currentSlideIdx]);
-        }
-        updateNavigationControls();
-      }
-
-      function updateNavigationControls() {
-        if (!prevBtn || !nextBtn || !counterElem || !startBtn || !endBtn || !fullScreenBtn) return;
-        const totalSlides = slideElements.length;
-        startBtn.disabled = currentSlideIdx === 0;
-        prevBtn.disabled = currentSlideIdx === 0;
-        nextBtn.disabled = currentSlideIdx >= totalSlides - 1;
-        endBtn.disabled = currentSlideIdx >= totalSlides - 1;
-        counterElem.textContent = totalSlides > 0 ? \`\${currentSlideIdx + 1} / \${totalSlides}\` : "0 / 0";
-      }
-
-      if (slideElements.length > 0) {
-        showSlideByIndex(0);
-      }
-      updateNavigationControls();
-
-      startBtn.addEventListener("click", () => showSlideByIndex(0));
-      prevBtn.addEventListener("click", () => showSlideByIndex(currentSlideIdx - 1));
-      nextBtn.addEventListener("click", () => showSlideByIndex(currentSlideIdx + 1));
-      endBtn.addEventListener("click", () => showSlideByIndex(slideElements.length - 1));
-      fullScreenBtn.addEventListener("click", () => {
-        document.documentElement.requestFullscreen().catch(err => console.log(err));
-      });
-
-      document.addEventListener("keydown", (e) => {
-        let newIdx = currentSlideIdx;
-        if (e.key === "f") {
-          e.preventDefault();
-          document.documentElement.requestFullscreen().catch(err => console.log(err));
-        } else if (e.key === "ArrowLeft" || e.key === "h") {
-          newIdx = currentSlideIdx - 1;
-        } else if (e.key === "ArrowRight" || e.key === "l" || e.key === " ") {
-          newIdx = currentSlideIdx + 1;
-        } else if (e.key === "Home") {
-          newIdx = 0;
-        } else if (e.key === "End") {
-          newIdx = slideElements.length - 1;
-        } else if (e.key >= "0" && e.key <= "9") {
-          let slideNum = e.key === '0' ? 10 : parseInt(e.key);
-          if (slideNum <= slideElements.length) {
-            newIdx = slideNum - 1;
+          if (typeof Prism !== "undefined") {
+            Prism.highlightAllUnder(slideElements[currentSlideIdx]);
           }
-        } else {
-          return;
+          updateNavigationControls();
         }
-        e.preventDefault();
-        showSlideByIndex(newIdx);
+
+        function updateNavigationControls() {
+          if (!prevBtn || !nextBtn || !counterElem || !startBtn || !endBtn || !fullScreenBtn) return;
+          const totalSlides = slideElements.length;
+          startBtn.disabled = currentSlideIdx === 0;
+          prevBtn.disabled = currentSlideIdx === 0;
+          nextBtn.disabled = currentSlideIdx >= totalSlides - 1;
+          endBtn.disabled = currentSlideIdx >= totalSlides - 1;
+          counterElem.textContent = totalSlides > 0 ? \`\${currentSlideIdx + 1} / \${totalSlides}\` : "0 / 0";
+        }
+
+        if (slideElements.length > 0) {
+          showSlideByIndex(0);
+        }
+        
+        updateNavigationControls();
+
+        startBtn.addEventListener("click", () => showSlideByIndex(0));
+        prevBtn.addEventListener("click", () => showSlideByIndex(currentSlideIdx - 1));
+        nextBtn.addEventListener("click", () => showSlideByIndex(currentSlideIdx + 1));
+        endBtn.addEventListener("click", () => showSlideByIndex(slideElements.length - 1));
+        fullScreenBtn.addEventListener("click", () => {
+          document.documentElement.requestFullscreen().catch(err => console.log(err));
+        });
+
+        document.addEventListener("keydown", (e) => {
+          let newIdx = currentSlideIdx;
+          if (e.key === "f") {
+            e.preventDefault();
+            document.documentElement.requestFullscreen().catch(err => console.log(err));
+          } else if (e.key === "ArrowLeft" || e.key === "h") {
+            newIdx = currentSlideIdx - 1;
+          } else if (e.key === "ArrowRight" || e.key === "l" || e.key === " ") {
+            newIdx = currentSlideIdx + 1;
+          } else if (e.key === "Home") {
+            newIdx = 0;
+          } else if (e.key === "End") {
+            newIdx = slideElements.length - 1;
+          } else if (e.key >= "0" && e.key <= "9") {
+            let slideNum = e.key === '0' ? 10 : parseInt(e.key);
+            if (slideNum <= slideElements.length) {
+              newIdx = slideNum - 1;
+            }
+          } else {
+            return;
+          }
+          e.preventDefault();
+          showSlideByIndex(newIdx);
+        });
       });
-    });
     </script>
   `;
 

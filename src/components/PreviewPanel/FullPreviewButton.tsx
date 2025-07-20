@@ -1,9 +1,9 @@
 import React from "react";
 import useExportFunctions from "@/hooks/useExportFunctions";
-import { DownloadIcon, SlideShowIcon, PopOutIcon } from "../UI/Icons"; // Import PopOutIcon
+import { DownloadIcon, SlideShowIcon, PopOutIcon } from "../UI/Icons";
 
 export default function FullPreviewButton() {
-  const { handlePreviewFullSlides, handleSaveAsSlides, handleLivePresent } = useExportFunctions(); // Add handleLivePresent
+  const { handlePreviewFullSlides, handleSaveAsSlides, handleLivePresent } = useExportFunctions();
   return (
     <div className="w-full flex items-center gap-0.5">
       <button
@@ -17,10 +17,9 @@ export default function FullPreviewButton() {
         Start Slide Show
       </button>
 
-      {/* NEW BUTTON FOR LIVE PRESENTING */}
       <button
         onClick={handleLivePresent}
-        className="flex items-center justify-center bg-nord10/80 hover:bg-nord10 group transition-all p-1 h-8 w-10 overflow-hidden hover:w-32"
+        className="relative flex items-center justify-center bg-nord10/80 hover:bg-nord10 group transition-all p-1 h-8 w-10 hover:w-36 overflow-hidden hover:z-10"
         title="Open Live Presenter Window"
       >
         <span className="flex-shrink-0">
@@ -33,7 +32,7 @@ export default function FullPreviewButton() {
 
       <button
         onClick={handleSaveAsSlides}
-        className="flex flex-row items-center bg-nord7/80 hover:bg-nord7 group transition-all px-2 delay-100 py-1 rounded-r-xl hover:rounded-r-md ease-in-out duration-700 w-10 hover:w-36 overflow-hidden"
+        className="relative flex flex-row items-center bg-nord7/80 hover:bg-nord7 group transition-all px-2 delay-100 py-1 rounded-r-xl hover:rounded-r-md ease-in-out duration-700 w-10 hover:w-36 overflow-hidden hover:z-10"
         title="Download slides"
       >
         <span className="flex-shrink-0">
