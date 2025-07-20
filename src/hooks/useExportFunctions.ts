@@ -3,28 +3,21 @@ import { useSlideContext } from "@/context/slideContext";
 import { themes } from "@/utils/themes";
 
 export default function useExportFunctions() {
-  const { markdownText, slideLayoutOptions, fontSizeMultiplier, activeTheme, activeFont } =
-    useSlideContext();
+  const { markdownText, slideLayoutOptions, fontSizeMultiplier, activeTheme, activeFont } = useSlideContext();
 
-  // Mode can be 'export' (for file saving) or 'live' (for the presenter window)
-  async function createHtmlBlob(
-    documentTitle: string,
-    mode: "export" | "live" = "export",
-  ): Promise<Blob> {
+  async function createHtmlBlob(documentTitle: string): Promise<Blob> {
     const theme = themes[activeTheme as keyof typeof themes];
-    const markdown = mode === "live" ? markdownText : markdownText.trim();
-    if (!markdown) {
+    if (!markdownText.trim()) {
       throw new Error("Nothing to process! Write some Markdown first.");
     }
     try {
       const htmlContent = await exportToCustomSlidesHtml(
-        markdown,
+        markdownText,
         slideLayoutOptions,
         documentTitle,
         theme,
         fontSizeMultiplier,
         activeFont,
-        mode, // Pass the mode to the export function
       );
       return new Blob([htmlContent], { type: "text/html;charset=utf-8;" });
     } catch (error) {
@@ -52,31 +45,46 @@ export default function useExportFunctions() {
     return defaultName;
   }
 
-  // NEW: Function to open and manage the live presenter window
   async function handleLivePresent() {
-    try {
-      const documentTitle = getFilenameFromFirstH1("Live Presentation");
-      const blob = await createHtmlBlob(documentTitle, "live");
-      const blobUrl = URL.createObjectURL(blob);
+    const presenterHtml = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <title>Live Presenter</title>
+        <style>
+          body { margin: 0; overflow: hidden; background-color: #2e3440; }
+          iframe { width: 100vw; height: 100vh; border: none; }
+        </style>
+      </head>
+      <body>
+        <iframe id="presenter-iframe"></iframe>
+        <script>
+          const iframe = document.getElementById('presenter-iframe');
+          const channel = new BroadcastChannel('md-presenter-channel');
+          
+          channel.onmessage = (event) => {
+            if (event.data.type === 'fullUpdate') {
+              iframe.srcdoc = event.data.data;
+            }
+          };
 
-      // Open a new window. The name "md-presenter" helps to focus it if it's already open.
-      const presenterWindow = window.open(
-        blobUrl,
-        "md-presenter",
-        "width=1280,height=720,resizable=yes,scrollbars=yes",
-      );
-      if (!presenterWindow) {
-        alert("Please allow pop-ups for this feature to work.");
-      }
-    } catch (error) {
-      alert(error);
-    }
+          // Ask the main window for the latest content when this window first loads
+          channel.postMessage({ type: 'requestInitial' });
+        </script>
+      </body>
+      </html>
+    `;
+
+    const blob = new Blob([presenterHtml], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    window.open(url, "md-presenter", "width=1280,height=720,resizable=yes,scrollbars=no");
   }
 
   async function handleSaveAsSlides() {
     try {
       const filenameBase = getFilenameFromFirstH1("slides_presentation");
-      const blob = await createHtmlBlob(filenameBase, "export"); // Explicitly 'export' mode
+      const blob = await createHtmlBlob(filenameBase);
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.setAttribute("href", url);
@@ -93,7 +101,7 @@ export default function useExportFunctions() {
   async function handlePreviewFullSlides() {
     try {
       const documentTitle = getFilenameFromFirstH1("Slides Preview");
-      const blob = await createHtmlBlob(documentTitle, "export"); // Explicitly 'export' mode
+      const blob = await createHtmlBlob(documentTitle);
       const url = URL.createObjectURL(blob);
       window.open(url, "_blank");
     } catch (error) {
@@ -123,6 +131,6 @@ export default function useExportFunctions() {
     handlePreviewFullSlides,
     handleDownloadMd,
     getFilenameFromFirstH1,
-    handleLivePresent, // Expose the new function
+    handleLivePresent,
   };
 }
