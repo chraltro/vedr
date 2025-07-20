@@ -178,7 +178,7 @@ html, body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap:5%;
+  gap:2.5%;
 }
 #first-slide .slide-content-wrapper {
   justify-content: center;
@@ -274,7 +274,7 @@ html, body {
 }
 .slide pre {
   overflow:unset !important;
-  margin: 1.6em 2% !important;
+  margin: 1em 2% !important;
   border-radius: 1vw;
   color: var(--code-text);
   padding: 2% 4% !important;
