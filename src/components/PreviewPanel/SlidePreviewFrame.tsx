@@ -3,8 +3,8 @@ import { usePreviewSlide } from "@/hooks/usePreviewSlide";
 
 export default function SlidePreviewFrame() {
   const iframRef = useRef<HTMLIFrameElement>(null);
-  const { previewHtml } = usePreviewSlide(iframRef);
-  const [loading, setLoading] = useState(true);
+  const { previewHtml, loading, setLoading } = usePreviewSlide(iframRef); // Get loading and setLoading
+
   return (
     <div className="w-full h-auto aspect-video rounded-md relative">
       <div
@@ -20,7 +20,7 @@ export default function SlidePreviewFrame() {
                     ${loading ? "hidden opacity-0" : "opacity-100"}
         `}
         sandbox="allow-scripts"
-        onLoad={() => setLoading(false)}
+        onLoad={() => setLoading(false)} // Set loading to false when iframe content loads
       />
     </div>
   );

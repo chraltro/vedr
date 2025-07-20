@@ -1,113 +1,78 @@
 import { useState, useEffect } from "react";
 import { useSlideContext } from "@/context/slideContext";
 import {
-  exportSingleSlideToHtmlbody,
   exportSingleSlideToHtml,
   generateFontSizesCss,
   generateThemeCss,
-  fontFamilies, // Import fontFamilies
+  fontFamilies,
 } from "@/utils/export-utils";
 import { themes } from "@/utils/themes";
 
 export function usePreviewSlide(iframeRef: React.RefObject<HTMLIFrameElement | null>) {
   const [previewHtml, setPreviewHtml] = useState<string>("");
-  const { currentSlide, slideLayoutOptions, currentSlideText, fontSizeMultiplier, activeTheme, activeFont } = // Get activeFont
+  const [loading, setLoading] = useState(true); // State to control the loading overlay
+  const { currentSlide, slideLayoutOptions, currentSlideText, fontSizeMultiplier, activeTheme, activeFont } =
     useSlideContext();
-  const [ismarkdownEmpty, setIsMarkdownEmpty] = useState(true);
+
+  // This effect generates the full HTML for the iframe's srcDoc
   useEffect(() => {
-    if (currentSlideText != null) {
-      setIsMarkdownEmpty(false);
-    } else {
-      setIsMarkdownEmpty(true);
-    }
-  }, [currentSlideText]);
-
-  useEffect(() => {
-    const generatePreview = async () => {
-      const theme = themes[activeTheme as keyof typeof themes];
-      const html = await exportSingleSlideToHtml(
-        theme,
-        fontSizeMultiplier,
-        currentSlideText,
-        currentSlide,
-        slideLayoutOptions,
-        activeFont, // Send activeFont
-      );
-
-      setPreviewHtml(html);
-    };
-    if (!ismarkdownEmpty) {
-      generatePreview();
-    }
-  }, [ismarkdownEmpty]);
-
-  useEffect(() => {
-    const generatePreview = async () => {
-      const html = await exportSingleSlideToHtmlbody(
-        currentSlideText,
-        currentSlide,
-        slideLayoutOptions,
-      );
-
-      if (iframeRef.current) {
-        if (iframeRef.current.contentWindow) {
-          iframeRef.current.contentWindow.postMessage({ type: "body", data: html }, "*");
-        }
+    const generateFullPreview = async () => {
+      setLoading(true); // Show loading overlay
+      try {
+        const theme = themes[activeTheme as keyof typeof themes];
+        const html = await exportSingleSlideToHtml(
+          theme,
+          fontSizeMultiplier,
+          currentSlideText,
+          currentSlide,
+          slideLayoutOptions,
+          activeFont,
+        );
+        setPreviewHtml(html);
+      } catch (error) {
+        console.error("Error generating full preview HTML:", error);
+        // Fallback HTML in case of error
+        setPreviewHtml("<html><body><p style='color:red;'>Error loading preview. Check console for details.</p></body></html>");
+        setLoading(false); // Hide loading overlay even on error
       }
     };
 
-    generatePreview();
-  }, [currentSlideText, slideLayoutOptions]);
+    generateFullPreview();
+  }, [currentSlideText, currentSlide, slideLayoutOptions, fontSizeMultiplier, activeTheme, activeFont]); // Depend on all relevant state
 
+  // This effect sends font size updates via postMessage (if iframe is already loaded)
+  // This is for performance, to avoid full iframe reload if only font size changes.
   useEffect(() => {
     const css = generateFontSizesCss(fontSizeMultiplier);
-    if (iframeRef.current) {
-      if (iframeRef.current.contentWindow) {
-        iframeRef.current.contentWindow.postMessage(
-          {
-            type: "fontSize",
-            data: css,
-          },
-          "*",
-        );
-      }
+    if (iframeRef.current && iframeRef.current.contentWindow && previewHtml) { // Only send if iframe has content
+      iframeRef.current.contentWindow.postMessage(
+        {
+          type: "fontSize",
+          data: css,
+        },
+        "*",
+      );
     }
-  }, [fontSizeMultiplier]);
+  }, [fontSizeMultiplier, iframeRef, previewHtml]); // Add previewHtml to ensure iframe is ready
 
+  // This effect sends theme (and thus font family) updates via postMessage
   useEffect(() => {
     const theme = themes[activeTheme as keyof typeof themes];
-    const css = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]); // Send activeFontFamily
-    if (iframeRef.current) {
-      if (iframeRef.current.contentWindow) {
-        iframeRef.current.contentWindow.postMessage(
-          {
-            type: "theme",
-            data: css,
-          },
-          "*",
-        );
-      }
+    const css = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]);
+    if (iframeRef.current && iframeRef.current.contentWindow && previewHtml) { // Only send if iframe has content
+      iframeRef.current.contentWindow.postMessage(
+        {
+          type: "theme", // This message type handles both theme and font-family CSS variables
+          data: css,
+        },
+        "*",
+      );
     }
-  }, [activeTheme, activeFont]); // Add activeFont to dependencies
-
-  useEffect(() => {
-    const theme = themes[activeTheme as keyof typeof themes];
-    const css = generateThemeCss(theme, fontFamilies[activeFont as keyof typeof fontFamilies]); // Generate CSS with current font
-    if (iframeRef.current) {
-      if (iframeRef.current.contentWindow) {
-        iframeRef.current.contentWindow.postMessage(
-          {
-            type: "fontFamily", // New message type for font family
-            data: css, // Send the updated theme CSS, which includes the font-family variable
-          },
-          "*",
-        );
-      }
-    }
-  }, [activeFont, activeTheme]); // Trigger when activeFont or activeTheme changes
+  }, [activeTheme, activeFont, iframeRef, previewHtml]); // Add previewHtml to ensure iframe is ready
 
   return {
     previewHtml,
+    loading, // Return loading state
+    setLoading, // Return setLoading to be used by iframe's onLoad
   };
 }
-
