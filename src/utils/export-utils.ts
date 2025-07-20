@@ -265,15 +265,14 @@ html, body {
 }
 .slide pre {
   overflow:unset !important;
-  margin:   2% !important;
+  margin: 1.6em 2% !important;
   border-radius: 1vw;
   color: var(--code-text);
   padding: 2% 4% !important;
   background-color: var(--code-background) !important;
   border: 1px solid #81a1c1;
   max-width: 93%;
-  min-width: 70% ;
-
+  min-width: 70%;
 }
 
 .slide pre code {
@@ -281,6 +280,10 @@ html, body {
   color: var(--code-text);
   font-family: Iosevka, monospace !important;
   font-size: inherit;
+}
+.slide pre code .token.comment {
+  font-style: italic;
+  color: #606e87;
 }
 .slide code:not(pre code) {
   background-color: var(--background-color-secondary);
