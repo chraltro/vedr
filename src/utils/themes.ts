@@ -58,9 +58,9 @@ export const themes = {
   },
   altro: {
     "--background-color": "#FFFFFF",
-    "--background-color-secondary": "#e1f5bd",
+    "--background-color-secondary": "#9ba2c6",
     "--text-color": "#000000",
-    "--primary-color": "#ccf581",
+    "--primary-color": "#000000",
     "--secondary-color": "#9ba2c6",
   },
 };
