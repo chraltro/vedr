@@ -97,11 +97,11 @@ export function generateThemeCss(theme?: Theme, activeFontFamily?: string): stri
     "--token-comment": `${coreTheme["--text-color"]}99`,
     "--token-punctuation": `${coreTheme["--text-color"]}aa`,
     "--token-property-etc": coreTheme["--secondary-color"],
-    "--token-string-etc": "#a3be8c",
+    "--token-string-etc": `${coreTheme["--text-color"]}99`,
     "--token-operator-etc": `${coreTheme["--text-color"]}aa`,
     "--token-keyword": coreTheme["--primary-color"],
     "--token-function": coreTheme["--secondary-color"],
-    "--token-variable": "#ee9900",
+    "--token-variable": `${coreTheme["--text-color"]}99`,
   };
   let css = ":root {\n";
   for (const [key, value] of Object.entries(finalTheme)) {
