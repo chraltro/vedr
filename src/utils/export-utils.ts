@@ -26,16 +26,17 @@ export function generateThemeCss(theme?: Theme, activeFontFamily?: string): stri
   const coreTheme = theme || defaultTheme;
   const finalTheme: Record<string, string> = {
     ...coreTheme,
+    // General Slide Styles
     "--heading-color": coreTheme["--primary-color"],
     "--inline-code-text": coreTheme["--primary-color"],
-    "--code-background": coreTheme["--secondary-color"],
+    "--code-background": coreTheme["--background-color-secondary"], // Correctly uses the secondary background
     "--code-text": coreTheme["--text-color"],
     "--hr-color": coreTheme["--primary-color"],
     "--table-border-color": coreTheme["--primary-color"],
     "--table-header-background": coreTheme["--primary-color"],
     "--table-even-row-background": `${coreTheme["--background-color-secondary"]}`,
     "--blockquote-background-color": coreTheme["--background-color-secondary"],
-    "--link-color": coreTheme["--secondary-color"],
+    "--link-color": coreTheme["--primary-color"],
     "--link-hover-color": coreTheme["--secondary-color"],
     "--header-footer-color": `${coreTheme["--primary-color"]}d0`,
     "--navigation-button-background": `${coreTheme["--primary-color"]}9a`,
@@ -44,14 +45,16 @@ export function generateThemeCss(theme?: Theme, activeFontFamily?: string): stri
     "--navigation-button-color": coreTheme["--background-color"],
     "--navigation-counter-color": coreTheme["--text-color"],
     "--slide-font-family": activeFontFamily || fontFamilies.Inter,
-    "--token-comment": `${coreTheme["--text-color"]}99`, // Faded text color
-    "--token-punctuation": `${coreTheme["--text-color"]}aa`, // Slightly faded text color
-    "--token-property-etc": coreTheme["--text-color"],
-    "--token-string-etc": "#a3be8c", // Kept static green for readability
-    "--token-operator-etc": coreTheme["--text-color"],
+
+    // Improved Syntax Highlighting Variables
+    "--token-comment": `${coreTheme["--text-color"]}99`,
+    "--token-punctuation": `${coreTheme["--text-color"]}aa`,
+    "--token-property-etc": coreTheme["--secondary-color"],
+    "--token-string-etc": "#a3be8c",
+    "--token-operator-etc": `${coreTheme["--text-color"]}aa`,
     "--token-keyword": coreTheme["--primary-color"],
-    "--token-function": coreTheme["--text-color"],
-    "--token-variable": "#ee9900", // Kept static orange for readability
+    "--token-function": coreTheme["--secondary-color"],
+    "--token-variable": "#ee9900",
   };
   let css = ":root {\n";
   for (const [key, value] of Object.entries(finalTheme)) {

@@ -60,7 +60,7 @@ export const themes = {
     "--background-color": "#FFFFFF",
     "--background-color-secondary": "#e1f5bd",
     "--text-color": "#000000",
-    "--primary-color": "#000000",
+    "--primary-color": "#9ba2c6",
     "--secondary-color": "#ccf581",
   },
 };
