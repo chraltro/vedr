@@ -76,22 +76,32 @@ function splitMarkdownIntoSlides(markdown: string): string[] {
   const slides: string[] = [];
   let currentSlideLines: string[] = [];
   let hasHeadingInCurrentSlide = false;
+  let inCodeBlock = false;
+
   for (const line of lines) {
     const trimmedLine = line.trim();
-    const isHeading = trimmedLine.startsWith("#");
+
+    if (trimmedLine.startsWith("```")) {
+      inCodeBlock = !inCodeBlock;
+    }
+
+    const isHeading = !inCodeBlock && trimmedLine.startsWith("#");
+
     if (isHeading) {
       if (currentSlideLines.length > 0 && hasHeadingInCurrentSlide) {
         slides.push(currentSlideLines.join("\n"));
       }
       currentSlideLines = [line];
       hasHeadingInCurrentSlide = true;
-    } else if (hasHeadingInCurrentSlide) {
+    } else {
       currentSlideLines.push(line);
     }
   }
-  if (currentSlideLines.length > 0 && hasHeadingInCurrentSlide) {
+
+  if (currentSlideLines.length > 0) {
     slides.push(currentSlideLines.join("\n"));
   }
+  
   return slides;
 }
 
