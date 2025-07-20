@@ -13,7 +13,7 @@ export const cyclingTips = [
     content: (
       <>
         Vim: <kbd>dd</kbd>
-        to delete your regrets one at a time <kbd><3</kbd> {/* FIXED HERE */}
+        to delete your regrets one at a time <HeartIcon /> {/* FIXED HERE */}
       </>
     ),
   },
