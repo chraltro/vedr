@@ -13,7 +13,7 @@ export const cyclingTips = [
     content: (
       <>
         Vim: <kbd>dd</kbd>
-        to delete your regrets one at a time <kbd><3</kbd>
+        to delete your regrets one at a time <kbd><3</kbd> {/* FIXED HERE */}
       </>
     ),
   },
@@ -98,8 +98,8 @@ export const cyclingTips = [
     key: "githubStar",
     content: (
       <>
-        <a href="https://github.com/dijith-481/mdpresentation" target="_blank" rel="noopener noreferrer"> {/* Changed URL */}
-          Enjoying md Presentation? Give it a <span style={{ color: "#5e81ac" }}>★</span> on GitHub ! {/* Changed */}
+        <a href="https://github.com/dijith-481/mdpresentation" target="_blank" rel="noopener noreferrer">
+          Enjoying md Presentation? Give it a <span style={{ color: "#5e81ac" }}>★</span> on GitHub !
         </a>
       </>
     ),
@@ -117,7 +117,7 @@ export const cyclingTips = [
     key: "tagline",
     content: (
       <>
-        md Presentation: <i> Markdown, beautifully woven. </i> {/* Changed */}
+        md Presentation: <i> Markdown, beautifully woven. </i>
       </>
     ),
   },
