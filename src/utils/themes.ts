@@ -57,11 +57,11 @@ export const themes = {
     "--secondary-color": "#CCCCCC",
   },
   altro: {
-    "--background-color": "#FFFFFF",
+    "--background-color": "#b0aeb8",
     "--background-color-secondary": "#e1f5bd",
     "--text-color": "#000000",
-    "--primary-color": "#9ba2c6",
-    "--secondary-color": "#ccf581",
+    "--primary-color": "#2f3c8b",
+    "--secondary-color": "#bcf06b",
   },
 };
 
