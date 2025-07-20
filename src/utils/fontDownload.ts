@@ -28,7 +28,7 @@ async function fileToBase64(file: File): Promise<string> {
 // Ensure this is correctly picked up during the build process
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
-async function fetchAndEncodeFont(fontPath: string): Promise<string> {
+async function fetchAndEncodeFont(fontPath: string): Promise<string | null> { // Return null on error
   let fullUrl = ''; // Declare fullUrl here
   try {
     // Construct the full URL for the asset
@@ -42,7 +42,8 @@ async function fetchAndEncodeFont(fontPath: string): Promise<string> {
 
     const response = await fetch(fullUrl); // Use the corrected full URL
     if (!response.ok) {
-      throw new Error(`Failed to fetch font from ${fullUrl}: ${response.statusText || response.status}`);
+      console.error(`Failed to fetch font from ${fullUrl}: ${response.statusText || response.status}`);
+      return null; // Return null instead of throwing
     }
 
     const blob = await response.blob();
@@ -53,7 +54,7 @@ async function fetchAndEncodeFont(fontPath: string): Promise<string> {
   } catch (error) {
     // Log the fullUrl that was attempted, which is now correctly constructed
     console.error(`Error encoding font from ${fontPath} (attempted URL: ${fullUrl}):`, error);
-    throw error;
+    return null; // Return null on any other error during fetch/encode
   }
 }
 
@@ -78,8 +79,11 @@ export async function getEncodedFonts(): Promise<FontCache> {
 
     return { ...fontCache };
   } catch (error) {
+    // This catch block will now only be hit if Promise.all itself fails,
+    // not if an individual font fetch returns null.
     console.error("Error getting encoded fonts:", error);
-    throw error;
+    // You might want to return a partial cache or re-throw if this is a critical failure
+    throw error; // Re-throwing for now, as it indicates a deeper issue than just one missing font
   }
 }
 

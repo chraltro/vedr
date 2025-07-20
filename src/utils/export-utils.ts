@@ -445,6 +445,10 @@ function generateAllFontFaces(encodedFonts: FontCache): string {
         font-display: swap;
         font-style: normal;
     }
+  `;
+  // Only include ABC Diatype if it was successfully encoded
+  if (encodedFonts.diatype) {
+    fontFaces += `
     @font-face { /* New font-face for ABC Diatype */
         font-family: 'ABC Diatype';
         src: url('data:font/woff2;base64,${encodedFonts.diatype}') format('woff2');
@@ -452,7 +456,8 @@ function generateAllFontFaces(encodedFonts: FontCache): string {
         font-display: swap;
         font-style: normal;
     }
-  `;
+    `;
+  }
   return fontFaces;
 }
 
