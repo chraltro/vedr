@@ -46,11 +46,11 @@ export function generateThemeCss(theme?: Theme, activeFontFamily?: string): stri
     "--slide-font-family": activeFontFamily || fontFamilies.Inter,
     "--token-comment": `${coreTheme["--text-color"]}99`, // Faded text color
     "--token-punctuation": `${coreTheme["--text-color"]}aa`, // Slightly faded text color
-    "--token-property-etc": coreTheme["--secondary-color"],
+    "--token-property-etc": coreTheme["--text-color"],
     "--token-string-etc": "#a3be8c", // Kept static green for readability
     "--token-operator-etc": coreTheme["--text-color"],
     "--token-keyword": coreTheme["--primary-color"],
-    "--token-function": coreTheme["--secondary-color"],
+    "--token-function": coreTheme["--text-color"],
     "--token-variable": "#ee9900", // Kept static orange for readability
   };
   let css = ":root {\n";
