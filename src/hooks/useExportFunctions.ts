@@ -3,21 +3,28 @@ import { useSlideContext } from "@/context/slideContext";
 import { themes } from "@/utils/themes";
 
 export default function useExportFunctions() {
-  const { markdownText, slideLayoutOptions, fontSizeMultiplier, activeTheme, activeFont } = useSlideContext(); // Get activeFont
+  const { markdownText, slideLayoutOptions, fontSizeMultiplier, activeTheme, activeFont } =
+    useSlideContext();
 
-  async function createHtmlBlob(documentTitle: string): Promise<Blob> {
+  // Mode can be 'export' (for file saving) or 'live' (for the presenter window)
+  async function createHtmlBlob(
+    documentTitle: string,
+    mode: "export" | "live" = "export",
+  ): Promise<Blob> {
     const theme = themes[activeTheme as keyof typeof themes];
-    if (!markdownText.trim()) {
+    const markdown = mode === "live" ? markdownText : markdownText.trim();
+    if (!markdown) {
       throw new Error("Nothing to process! Write some Markdown first.");
     }
     try {
       const htmlContent = await exportToCustomSlidesHtml(
-        markdownText,
+        markdown,
         slideLayoutOptions,
         documentTitle,
         theme,
         fontSizeMultiplier,
-        activeFont, // Send activeFont
+        activeFont,
+        mode, // Pass the mode to the export function
       );
       return new Blob([htmlContent], { type: "text/html;charset=utf-8;" });
     } catch (error) {
@@ -45,10 +52,31 @@ export default function useExportFunctions() {
     return defaultName;
   }
 
+  // NEW: Function to open and manage the live presenter window
+  async function handleLivePresent() {
+    try {
+      const documentTitle = getFilenameFromFirstH1("Live Presentation");
+      const blob = await createHtmlBlob(documentTitle, "live");
+      const blobUrl = URL.createObjectURL(blob);
+
+      // Open a new window. The name "md-presenter" helps to focus it if it's already open.
+      const presenterWindow = window.open(
+        blobUrl,
+        "md-presenter",
+        "width=1280,height=720,resizable=yes,scrollbars=yes",
+      );
+      if (!presenterWindow) {
+        alert("Please allow pop-ups for this feature to work.");
+      }
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   async function handleSaveAsSlides() {
     try {
       const filenameBase = getFilenameFromFirstH1("slides_presentation");
-      const blob = await createHtmlBlob(filenameBase);
+      const blob = await createHtmlBlob(filenameBase, "export"); // Explicitly 'export' mode
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.setAttribute("href", url);
@@ -65,7 +93,7 @@ export default function useExportFunctions() {
   async function handlePreviewFullSlides() {
     try {
       const documentTitle = getFilenameFromFirstH1("Slides Preview");
-      const blob = await createHtmlBlob(documentTitle);
+      const blob = await createHtmlBlob(documentTitle, "export"); // Explicitly 'export' mode
       const url = URL.createObjectURL(blob);
       window.open(url, "_blank");
     } catch (error) {
@@ -95,5 +123,6 @@ export default function useExportFunctions() {
     handlePreviewFullSlides,
     handleDownloadMd,
     getFilenameFromFirstH1,
+    handleLivePresent, // Expose the new function
   };
 }
