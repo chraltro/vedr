@@ -70,7 +70,7 @@ export async function getEncodedFonts(): Promise<FontCache> {
     const [interBase64, iosevkaBase64, diatypeBase64] = await Promise.all([ // Get diatype
       fetchAndEncodeFont("InterVariable.woff2"),
       fetchAndEncodeFont("iosevka.woff2"),
-      fetchAndEncodeFont("ABC Diatype.woff2"), // Get the new font
+      fetchAndEncodeFont("abcdiatype.woff2"), // Updated to new filename
     ]);
 
     fontCache.inter = interBase64;

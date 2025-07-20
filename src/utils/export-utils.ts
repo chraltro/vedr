@@ -19,7 +19,7 @@ const defaultTheme = themes.nordDark;
 export const fontFamilies = {
   Inter: "'Inter', sans-serif",
   Iosevka: "'Iosevka', monospace",
-  "ABC Diatype": "'ABC Diatype', sans-serif", // Add the new font
+  abcdiatype: "'abcdiatype', sans-serif", // Updated to new font family name
 };
 
 export function generateThemeCss(theme?: Theme, activeFontFamily?: string): string { // Add activeFontFamily parameter
@@ -450,7 +450,7 @@ function generateAllFontFaces(encodedFonts: FontCache): string {
   if (encodedFonts.diatype) {
     fontFaces += `
     @font-face { /* New font-face for ABC Diatype */
-        font-family: 'ABC Diatype';
+        font-family: 'abcdiatype'; /* Updated to new font family name */
         src: url('data:font/woff2;base64,${encodedFonts.diatype}') format('woff2');
         font-weight: 100..1000; /* Changed to support variable fonts */
         font-display: swap;

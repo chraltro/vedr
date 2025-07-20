@@ -134,7 +134,7 @@ export const cyclingTips = [
     key: "vimFont", // New tip for font selection
     content: (
       <>
-        Vim: <kbd>:f</kbd> to switch font
+        Vim: <kbd>:f</kbd> to switch font (e.g., to abcdiatype)
       </>
     ),
   },
