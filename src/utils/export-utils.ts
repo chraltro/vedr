@@ -72,36 +72,32 @@ function hasCodeBlocks(markdown: string): boolean {
 }
 
 function splitMarkdownIntoSlides(markdown: string): string[] {
-  const lines = markdown.split("\n");
+  const lines = markdown.split('\n');
   const slides: string[] = [];
   let currentSlideLines: string[] = [];
-  let hasHeadingInCurrentSlide = false;
   let inCodeBlock = false;
 
   for (const line of lines) {
-    const trimmedLine = line.trim();
-
-    if (trimmedLine.startsWith("```")) {
+    if (line.trim().startsWith('```')) {
       inCodeBlock = !inCodeBlock;
     }
 
-    const isHeading = !inCodeBlock && trimmedLine.startsWith("#");
+    const isHeading = !inCodeBlock && line.trim().startsWith('#');
 
     if (isHeading) {
-      if (currentSlideLines.length > 0 && hasHeadingInCurrentSlide) {
-        slides.push(currentSlideLines.join("\n"));
+      if (currentSlideLines.length > 0) {
+        slides.push(currentSlideLines.join('\n'));
       }
       currentSlideLines = [line];
-      hasHeadingInCurrentSlide = true;
     } else {
       currentSlideLines.push(line);
     }
   }
 
   if (currentSlideLines.length > 0) {
-    slides.push(currentSlideLines.join("\n"));
+    slides.push(currentSlideLines.join('\n'));
   }
-  
+
   return slides;
 }
 
