@@ -42,7 +42,9 @@ async function fetchAndEncodeFont(fontPath: string): Promise<string> {
 
     const blob = await response.blob();
     const file = new File([blob], fontPath.split("/").pop() || "");
-    return await fileToBase64(file);
+    const base64 = await fileToBase64(file);
+    console.log(`Successfully fetched and encoded font: ${fontPath}`); // Add this log
+    return base64;
   } catch (error) {
     console.error(`Error encoding font from ${fontPath} (attempted URL: ${BASE_PATH}${fontPath}):`, error);
     throw error;

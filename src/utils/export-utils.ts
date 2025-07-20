@@ -448,7 +448,7 @@ function generateAllFontFaces(encodedFonts: FontCache): string {
     @font-face { /* New font-face for ABC Diatype */
         font-family: 'ABC Diatype';
         src: url('data:font/woff2;base64,${encodedFonts.diatype}') format('woff2');
-        font-weight: 400; /* Adjust as needed for your font */
+        font-weight: 100..1000; /* Changed to support variable fonts */
         font-display: swap;
         font-style: normal;
     }
