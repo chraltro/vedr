@@ -1,3 +1,4 @@
+// src\utils\themes.ts
 export const themes = {
   nordDark: {
     "--background-color": "#2e3440",
@@ -26,6 +27,34 @@ export const themes = {
     "--text-color": "#E0E0E0",
     "--primary-color": "#fefefe",
     "--secondary-color": "#efefef",
+  },
+  emerald: {
+    "--background-color": "#2F5249",
+    "--background-color-secondary": "#437057",
+    "--text-color": "#E0E0E0",
+    "--primary-color": "#97B067",
+    "--secondary-color": "#E3DE61",
+  },
+  pastelGreen: {
+    "--background-color": "#EEEFE0",
+    "--background-color-secondary": "#D1D8BE",
+    "--text-color": "#3B4252",
+    "--primary-color": "#819A91",
+    "--secondary-color": "#A7C1A8",
+  },
+  bano: {
+    "--background-color": "#35414d",
+    "--background-color-secondary": "#4C566A",
+    "--text-color": "#B9DDED",
+    "--primary-color": "#B9DDED",
+    "--secondary-color": "#81A1C1",
+  },
+  whiteOnBlack: {
+    "--background-color": "#000000",
+    "--background-color-secondary": "#1A1A1A",
+    "--text-color": "#FFFFFF",
+    "--primary-color": "#FFFFFF",
+    "--secondary-color": "#CCCCCC",
   },
 };
 
