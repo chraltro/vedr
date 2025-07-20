@@ -17,26 +17,22 @@ export default function FullPreviewButton() {
 
       <button
         onClick={handleLivePresent}
-        className="group relative flex h-8 w-12 items-center overflow-hidden bg-nord10/80 text-nord0 transition-all duration-300 hover:w-36 hover:bg-nord10 hover:z-10"
+        className="group relative flex h-8 w-12 flex-shrink-0 items-center justify-center overflow-hidden bg-nord10/80 text-nord0 transition-all duration-300 hover:w-36 hover:justify-start hover:pl-3 hover:bg-nord10 hover:z-10"
         title="Open Live Presenter Window"
       >
-        <div className="absolute inset-y-0 left-0 flex w-12 items-center justify-center">
-          <PopOutIcon />
-        </div>
-        <span className="pl-14 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <PopOutIcon />
+        <span className="ml-2 w-0 whitespace-nowrap opacity-0 transition-all duration-200 group-hover:w-auto group-hover:opacity-100">
           Live Present
         </span>
       </button>
 
       <button
         onClick={handleSaveAsSlides}
-        className="group relative flex h-8 w-12 items-center overflow-hidden rounded-r-xl bg-nord7/80 text-nord0 transition-all duration-300 hover:w-36 hover:rounded-r-md hover:bg-nord7 hover:z-10"
+        className="group relative flex h-8 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-r-xl bg-nord7/80 text-nord0 transition-all duration-300 hover:w-32 hover:justify-start hover:pl-3 hover:rounded-r-md hover:bg-nord7 hover:z-10"
         title="Download slides"
       >
-        <div className="absolute inset-y-0 left-0 flex w-12 items-center justify-center">
-          <DownloadIcon />
-        </div>
-        <span className="pl-14 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <DownloadIcon />
+        <span className="ml-2 w-0 whitespace-nowrap opacity-0 transition-all duration-200 group-hover:w-auto group-hover:opacity-100">
           Download
         </span>
       </button>
