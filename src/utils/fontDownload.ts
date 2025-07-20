@@ -29,11 +29,16 @@ async function fileToBase64(file: File): Promise<string> {
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 async function fetchAndEncodeFont(fontPath: string): Promise<string> {
+  let fullUrl = ''; // Declare fullUrl here
   try {
     // Construct the full URL for the asset
     // Remove leading slash from fontPath if it exists, to avoid //
     const assetRelativePath = fontPath.startsWith('/') ? fontPath.substring(1) : fontPath;
-    const fullUrl = `${BASE_PATH}/${assetRelativePath}`; // Ensure BASE_PATH is applied
+    // Explicitly encode the path segment to handle spaces and other special characters
+    const encodedAssetRelativePath = encodeURIComponent(assetRelativePath);
+    fullUrl = `${BASE_PATH}/${encodedAssetRelativePath}`; // Ensure BASE_PATH is applied
+
+    console.log(`Attempting to fetch font from: ${fullUrl}`); // Log the actual URL being fetched
 
     const response = await fetch(fullUrl); // Use the corrected full URL
     if (!response.ok) {
@@ -46,13 +51,17 @@ async function fetchAndEncodeFont(fontPath: string): Promise<string> {
     console.log(`Successfully fetched and encoded font: ${fontPath}`); // Add this log
     return base64;
   } catch (error) {
-    console.error(`Error encoding font from ${fontPath} (attempted URL: ${BASE_PATH}${fontPath}):`, error);
+    // Log the fullUrl that was attempted, which is now correctly constructed
+    console.error(`Error encoding font from ${fontPath} (attempted URL: ${fullUrl}):`, error);
     throw error;
   }
 }
 
 export async function getEncodedFonts(): Promise<FontCache> {
   try {
+    // Log the BASE_PATH to help debug deployment issues
+    console.log(`Current BASE_PATH: ${BASE_PATH}`);
+
     if (fontCache.inter && fontCache.iosevka && fontCache.diatype) { // Check all fonts
       return { ...fontCache };
     }
