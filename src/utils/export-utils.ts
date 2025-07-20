@@ -202,6 +202,10 @@ padding-left: 1.8em;
 width: 100%;
   margin: 0;
 }
+/* Added rule for nested lists */
+.slide li > ul, .slide li > ol {
+  margin-top: 0.5em; /* Adjust this value as needed */
+}
 .slide li {
   font-weight:500;
   padding-left: 0.6em;
@@ -577,8 +581,6 @@ fullScreenBtn.classList.add("fullscreen-button");
           newIdx = currentSlideIdx + 1;
         } else if (e.key === "Home") {
           newIdx = 0;
-        } else if (e.key === "End") {
-          newIdx = slideElements.length - 1;
         } else if (e.key >= "0" && e.key <= "9") {
           let slideNum = e.key === "0" ? 10 : parseInt(e.key);
           if (slideNum <= slideElements.length) {
