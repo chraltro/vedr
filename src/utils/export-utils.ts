@@ -76,24 +76,41 @@ function splitMarkdownIntoSlides(markdown: string): string[] {
   const slides: string[] = [];
   let currentSlideLines: string[] = [];
   let inCodeBlock = false;
+  // This regex matches a line that starts with 1-6 '#' characters followed by a space.
+  // This is the official Markdown spec for a heading.
+  const headingRegex = /^#{1,6} /;
 
   for (const line of lines) {
-    if (line.trim().startsWith('```')) {
+    const trimmedLine = line.trim();
+
+    // First, check if the line is a code fence to toggle our state.
+    if (trimmedLine.startsWith('```')) {
       inCodeBlock = !inCodeBlock;
+      currentSlideLines.push(line);
+      continue; // Immediately move to the next line.
     }
 
-    const isHeading = !inCodeBlock && line.trim().startsWith('#');
-
-    if (isHeading) {
-      if (currentSlideLines.length > 0) {
-        slides.push(currentSlideLines.join('\n'));
-      }
-      currentSlideLines = [line];
-    } else {
+    // If we are inside a code block, we must treat the line as content, never a heading.
+    if (inCodeBlock) {
       currentSlideLines.push(line);
+    } else {
+      // If we are not in a code block, we can safely check for headings.
+      if (headingRegex.test(trimmedLine)) {
+        // A real heading is found. This is a slide break.
+        // Push the completed previous slide.
+        if (currentSlideLines.length > 0) {
+          slides.push(currentSlideLines.join('\n'));
+        }
+        // Start the new slide with this heading.
+        currentSlideLines = [line];
+      } else {
+        // This is just regular content, not a heading.
+        currentSlideLines.push(line);
+      }
     }
   }
 
+  // After the loop, push the very last slide.
   if (currentSlideLines.length > 0) {
     slides.push(currentSlideLines.join('\n'));
   }
