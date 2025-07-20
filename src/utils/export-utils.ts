@@ -72,7 +72,7 @@ export function generateThemeCss(theme?: Theme, activeFontFamily?: string): stri
   // Dynamically calculate code background based on your exact rule
   const codeBlockBackground = isColorDark(mainBg)
     ? shadeColor(mainBg, 10) // 10% brighter for dark themes
-    : shadeColor(mainBg, -6); // 6% darker for light themes
+    : shadeColor(mainBg, -20); // 20% darker for light themes
 
   const finalTheme: Record<string, string> = {
     ...coreTheme,
