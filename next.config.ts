@@ -2,7 +2,7 @@
 import type { NextConfig } from "next";
 
 const isProd = process.env.NODE_ENV === "production";
-const repoName = "mdpresentation"; // <-- ENSURE THIS IS EXACTLY "mdpresentation"
+const repoName = "vedr";
 
 const nextConfig: NextConfig = {
   devIndicators: false,

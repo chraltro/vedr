@@ -13,8 +13,8 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "md Presentation",
-    template: "%s - md Presentation",
+    default: "VEDR - Swift Presentations",
+    template: "%s - VEDR",
   },
   description:
     "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
@@ -23,17 +23,17 @@ export const metadata: Metadata = {
     apple: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💠</text></svg>",
   },
   openGraph: {
-    title: "md Presentation",
+    title: "VEDR - Swift Presentations",
     description:
       "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
-    url: "https://github.com/chraltro/mdpresentation",
-    siteName: "md Presentation",
+    url: "https://chraltro.github.io/vedr",
+    siteName: "VEDR",
     images: [
       {
-        url: "https://github.com/chraltro/mdpresentation/image.png",
+        url: "https://chraltro.github.io/vedr/image.png",
         width: 1200,
         height: 630,
-        alt: "md Presentation - Markdown Presentation Tool",
+        alt: "VEDR - Markdown Presentation Tool",
       },
     ],
     locale: "en_US",
@@ -41,11 +41,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "md Presentation",
+    title: "VEDR - Swift Presentations",
     description:
       "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
-    images: ["https://github.com/chraltro/mdpresentation/editor.png"],
-    creator: "@dijith_",
+    images: ["https://chraltro.github.io/vedr/editor.png"],
   },
   robots: {
     index: true,
@@ -58,7 +57,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  authors: [{ name: "dijith" }],
   keywords: [
     "markdown presentation",
     "html slides",
@@ -66,11 +64,10 @@ export const metadata: Metadata = {
     "markdown editor",
     "minimalist slides",
     "offline first",
-    "nord theme",
-    "md presentation"
+    "vedr"
   ],
   alternates: {
-    canonical: "https://github.com/chraltro/mdpresentation",
+    canonical: "https://chraltro.github.io/vedr",
   },
 };
 export default function RootLayout({
@@ -81,15 +78,11 @@ export default function RootLayout({
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "md Presentation",
+    name: "VEDR",
     description:
       "A no-nonsense tool for creating professional, platform-independent HTML presentations from Markdown using familiar Vim motions.",
-    url: "https://github.com/chraltro/mdpresentation",
+    url: "https://chraltro.github.io/vedr",
     applicationCategory: "Productivity",
-    creator: {
-      "@type": "Person",
-      name: "dijith",
-    },
   };
   return (
     <html lang="en">

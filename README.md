@@ -1,8 +1,8 @@
 <div align="center">
-  <img src="https://github.com/dijith-481/Markweavia/blob/main/public/logo.svg" alt="Markweavia Logo" width="120">
-  <h1>Markweavia</h1>
-  <p><i>Markdown, beautifully woven.</i></p>
-  <p>A no-nonsense tool  for crafting minimalist, professional platform-independant presentations directly from Markdown  using familiar Vim motions.</p>
+  <img src="logo.svg" alt="VEDR Logo" width="120">
+  <h1>VEDR</h1>
+  <p><i>Swift presentations, flowing like the wind.</i></p>
+  <p>A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.</p>
 
   <p>
     <img src="https://img.shields.io/badge/license-GPL--2.0-blue.svg?style=for-the-badge&logoColor=D8DEE9&color=5E81AC" alt="License: GPL-2.0">
@@ -16,43 +16,39 @@
 
 - Creating slides should be a straightforward process, especially for content that benefits from a minimalist aesthetic.
 - Traditional presentation software often involves excessive mouse dragging and complex component manipulation for what should be simple text and structure.
-- Markweavia was born from the desire to simplify this
+- VEDR was born from the desire to simplify this
   - enabling the creation of clean, professional slides with the ease of editing a Markdown file,
   - enhanced by the efficiency of Vim keybindings.
-    > Most impactful presentations rely on clear text and an uncluttered background, a philosophy Markweavia aims to embody perfectly.
+    > Most impactful presentations rely on clear text and an uncluttered background, a philosophy VEDR aims to embody perfectly.
 
 ## Overview
 
-Markweavia is a web-based application that transforms your Markdown text and Katex into elegant HTML slide presentations. It provides a live preview of your current slide, allowing for a seamless WYSIWYG-like experience.
+VEDR is a web-based application that transforms your Markdown text and KaTeX into elegant HTML slide presentations. It provides a live preview of your current slide, allowing for a seamless WYSIWYG-like experience.
 
 **Key Features:**
 
 - **Markdown-First:** Write slides using simple, intuitive Markdown syntax.
-- **Vim Keybindings:** Navigate and edit with the speed and precision of Vim(hjkl go brrrr).
+- **Vim Keybindings:** Navigate and edit with the speed and precision of Vim (hjkl go brrrr).
 - **Live Slide Preview:** Instantly see how your current Markdown section renders as a slide.
-- **Nord-Inspired Themes:** Choose from a selection of clean, minimalist themes, including light and dark(default) Nord variations and monochrome options.
+- **Clean Themes:** Choose from a selection of clean, minimalist themes, including light and dark variations and monochrome options.
 - **Customizable Layout:** Control page numbers, header/footer text and positions, and whether these elements appear on the first slide.
 - **Font Scaling:** Adjust the base font size of your slides for optimal readability(default should work for most).
 - **Local Storage Persistence:** Your work is automatically saved in your browser.
 - **Export Options:**
   - Download your presentation as a self-contained HTML file.
-  - offline first approach with fonts,code syntax hightlighting and katex all included in single html file(~2MB file size).
-  - partial support for Images (online)
+  - Offline-first approach with fonts, code syntax highlighting and KaTeX all included in single HTML file (~2MB file size).
+  - Partial support for images (online)
   - Download the source Markdown (.md) file.
 - **File Upload:** Import existing Markdown files to continue your work or convert them to slides.
 - **Predefined Templates:** Quickly start with some predefined templates.
 ## Examples
-- [nord Dark template](https://markweavia.vercel.app/examples/nordDark.html)
--  [nord Light template](https://markweavia.vercel.app/examples/nordLight.html)
-- [true White template](https://markweavia.vercel.app/examples/trueWhite.html)
-- [true Black template](https://markweavia.vercel.app/examples/trueBlack.html)
+- [Dark template](https://chraltro.github.io/vedr/examples/nordDark.html)
+- [Light template](https://chraltro.github.io/vedr/examples/nordLight.html)
+- [True White template](https://chraltro.github.io/vedr/examples/trueWhite.html)
+- [True Black template](https://chraltro.github.io/vedr/examples/trueBlack.html)
 
 
 
-<img src="https://github.com/dijith-481/Markweavia/blob/main/assets/fullWallthrough.gif" width = "48%"><img src="https://github.com/dijith-481/Markweavia/blob/main/assets/presentation.gif" width = "48%">
-<div align="center">
-  <img src="https://github.com/dijith-481/Markweavia/blob/main/assets/editing.gif" width="50%">
-</div>
 <table style="width:100%;">
   <tr>
     <td style="width:50%; text-align:center;">
@@ -75,7 +71,7 @@ Markweavia is a web-based application that transforms your Markdown text and Kat
 
 ## Understanding Exported Slides
 
-Markweavia generates a single, self-contained HTML file. This file includes all necessary CSS for styling (based on your chosen theme and customizations) and JavaScript for interactivity. It works offline.
+VEDR generates a single, self-contained HTML file. This file includes all necessary CSS for styling (based on your chosen theme and customizations) and JavaScript for interactivity. It works offline.
 
 **HTML Structure & Styling:**
 
@@ -84,10 +80,10 @@ Markweavia generates a single, self-contained HTML file. This file includes all 
 - all content maintain 16:9 aspect ratio.
 - component sizes are based on viewport size.
 - Standard Markdown elements (headings, paragraphs, lists, code blocks, tables, etc.) are converted to their corresponding HTML tags with marked.js and styled according to the active theme variables and base presentation CSS.
-- Code blocks are highlighted using Prism.js with a Nord-based theme.
+- Code blocks are highlighted using Prism.js.
 - Mathematical expressions are rendered using KaTeX.
 - Custom header/footer items and page numbers are positioned absolutely within each slide based on your settings.
-- The overall presentation uses a clean, Nord-inspired design by default, with font sizes and colors determined by the selected theme and font scaling options.
+- The overall presentation uses a clean, minimalist design by default, with font sizes and colors determined by the selected theme and font scaling options.
   > 2Mb file size includes code syntax highlighting , fonts and katex
 
 > to improve performance in live preview fonts are loaded at startup , styles and text is injected based on change this improves performance compared to previous approach
@@ -134,17 +130,14 @@ A comprehensive set of keyboard shortcuts is available for efficient navigation:
   <img src="https://img.shields.io/badge/CodeMirror-D28A00?style=for-the-badge&logo=codemirror&logoColor=D8DEE9&labelColor=2E3440" alt="CodeMirror">
   <img src="https://img.shields.io/badge/VIM-019733?style=for-the-badge&logo=vim&logoColor=D8DEE9&labelColor=2E3440" alt="Vim (bindings)">
   <img src="https://img.shields.io/badge/Marked.js-333333?style=for-the-badge&logo=markdown&logoColor=D8DEE9&labelColor=2E3440" alt="Marked.js">
-  <img src="https://img.shields.io/badge/Nord_Theme-88C0D0?style=for-the-badge&logoColor=2E3440&labelColor=2E3440" alt="Nord Theme">
 </div>
 
 - **Framework:** Next.js (with React)
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS, with a strong adherence to Nord color palette principles.
+- **Styling:** Tailwind CSS
 - **Editor Core:** CodeMirror 6
 - **Vim Bindings:** @replit/codemirror-vim
 - **Markdown Parsing:** Marked.js
-- **UI/UX Inspiration:** Nord Theme
-- **Code Assistance & Refactoring:** Google Gemini Pro (Preview 05-06)
 
 ## Future Plans
 
@@ -179,7 +172,6 @@ See the [LICENSE](LICENSE) file for details.
 
 <div align="center">
   <hr style="border-top: 1px solid #4C566A; margin: 20px 0;">
-  <img src="https://github.com/dijith-481/Markweavia/blob/main/public/markweavia.svg" alt="Markweavia Logo" width="300">
-  <p> Markdown, beautifully woven.</p>
-  <p>made with ❤️ by <a href="https://dijith.vercel.app">dijith</a></p>
+  <img src="logo.svg" alt="VEDR Logo" width="200">
+  <p>Swift presentations, flowing like the wind.</p>
 </div>

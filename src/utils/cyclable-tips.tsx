@@ -76,30 +76,11 @@ export const cyclingTips = [
     ),
   },
   {
-    key: "madeWithLove",
-    content: (
-      <>
-        <a
-          className=" gap-1  px-1 py-0.5  flex items-center justify-center italic"
-          href="https://dijith.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Made with{"  "}
-          <span className="text-nord11 rotate-2">
-            <HeartIcon />
-          </span>
-          {"  "}& vim by <span className="text-nord9/60 underline ">dijith</span>
-        </a>
-      </>
-    ),
-  },
-  {
     key: "githubStar",
     content: (
       <>
-        <a href="https://github.com/chraltro/mdpresentation" target="_blank" rel="noopener noreferrer">
-          Enjoying md Presentation? Give it a <span style={{ color: "#5e81ac" }}>★</span> on GitHub!
+        <a href="https://github.com/chraltro/vedr" target="_blank" rel="noopener noreferrer">
+          Enjoying VEDR? Give it a <span style={{ color: "#5e81ac" }}>★</span> on GitHub!
         </a>
       </>
     ),
@@ -117,7 +98,7 @@ export const cyclingTips = [
     key: "tagline",
     content: (
       <>
-        md Presentation: <i> Markdown, beautifully woven. </i>
+        VEDR: <i>Swift presentations, flowing like the wind.</i>
       </>
     ),
   },
