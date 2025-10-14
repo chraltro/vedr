@@ -12,7 +12,18 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
   const { handleDownloadMd, handleSaveAsSlides } = useExportFunctions();
 
   return (
-    <header className="py-1 px-2 md:py-2 h-16 flex justify-center items-center space-x-2 text-nord9 md:px-4">
+    <header className="py-1 px-2 md:py-2 h-16 flex justify-between items-center space-x-2 text-nord9 md:px-4">
+      <div className="flex items-center space-x-2">
+        <img
+          src="/vedr/logo.svg"
+          alt="VEDR"
+          className="h-8 w-8 md:h-10 md:w-10 opacity-80 hover:opacity-100 transition-opacity"
+        />
+        <span className="hidden md:inline-block text-lg font-semibold tracking-wide text-nord4" style={{fontFamily: 'Cinzel, serif'}}>
+          VEDR
+        </span>
+      </div>
+      <div className="flex items-center space-x-2">
       <div
         className="flex flex-row items-center group transition-all px-1 py-1 rounded-md ease-in-out duration-700 w-10 hover:w-32 overflow-hidden"
         title="Download a Markdown file (.md) or HTML slides"
@@ -53,6 +64,7 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
           Upload
         </span>
       </button>
+      </div>
     </header>
   );
 }
