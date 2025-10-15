@@ -1,4 +1,14 @@
+@import "../../../shared/theme.css";
 @import "tailwindcss";
+
+:root {
+  /* Vedr-specific accent color - Sky Blue */
+  --app-accent: #7DCFFF;
+  --app-accent-dark: #5AADDD;
+  --app-accent-light: #9FDFFF;
+  --app-accent-rgb: 125, 207, 255;
+}
+
 @theme {
   --color-nordic: #191d24;
   --color-nord0: #2e3440;
