@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="logo.svg" alt="VEDR Logo" width="120">
-  <h1>VEDR</h1>
+  <img src="logo.svg" alt="Vedr Logo" width="120">
+  <h1>Vedr</h1>
   <p><i>Swift presentations, flowing like the wind.</i></p>
   <p>A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.</p>
 
@@ -16,14 +16,14 @@
 
 - Creating slides should be a straightforward process, especially for content that benefits from a minimalist aesthetic.
 - Traditional presentation software often involves excessive mouse dragging and complex component manipulation for what should be simple text and structure.
-- VEDR was born from the desire to simplify this
+- Vedr was born from the desire to simplify this
   - enabling the creation of clean, professional slides with the ease of editing a Markdown file,
   - enhanced by the efficiency of Vim keybindings.
-    > Most impactful presentations rely on clear text and an uncluttered background, a philosophy VEDR aims to embody perfectly.
+    > Most impactful presentations rely on clear text and an uncluttered background, a philosophy Vedr aims to embody perfectly.
 
 ## Overview
 
-VEDR is a web-based application that transforms your Markdown text and KaTeX into elegant HTML slide presentations. It provides a live preview of your current slide, allowing for a seamless WYSIWYG-like experience.
+Vedr is a web-based application that transforms your Markdown text and KaTeX into elegant HTML slide presentations. It provides a live preview of your current slide, allowing for a seamless WYSIWYG-like experience.
 
 **Key Features:**
 
@@ -71,7 +71,7 @@ VEDR is a web-based application that transforms your Markdown text and KaTeX int
 
 ## Understanding Exported Slides
 
-VEDR generates a single, self-contained HTML file. This file includes all necessary CSS for styling (based on your chosen theme and customizations) and JavaScript for interactivity. It works offline.
+Vedr generates a single, self-contained HTML file. This file includes all necessary CSS for styling (based on your chosen theme and customizations) and JavaScript for interactivity. It works offline.
 
 **HTML Structure & Styling:**
 
@@ -172,6 +172,6 @@ See the [LICENSE](LICENSE) file for details.
 
 <div align="center">
   <hr style="border-top: 1px solid #4C566A; margin: 20px 0;">
-  <img src="logo.svg" alt="VEDR Logo" width="200">
+  <img src="logo.svg" alt="Vedr Logo" width="200">
   <p>Swift presentations, flowing like the wind.</p>
 </div>

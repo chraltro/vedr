@@ -13,8 +13,8 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "VEDR - Swift Presentations",
-    template: "%s - VEDR",
+    default: "Vedr - Swift Presentations",
+    template: "%s - Vedr",
   },
   description:
     "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
@@ -23,17 +23,17 @@ export const metadata: Metadata = {
     apple: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💠</text></svg>",
   },
   openGraph: {
-    title: "VEDR - Swift Presentations",
+    title: "Vedr - Swift Presentations",
     description:
       "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
     url: "https://chraltro.github.io/vedr",
-    siteName: "VEDR",
+    siteName: "Vedr",
     images: [
       {
         url: "https://chraltro.github.io/vedr/image.png",
         width: 1200,
         height: 630,
-        alt: "VEDR - Markdown Presentation Tool",
+        alt: "Vedr - Markdown Presentation Tool",
       },
     ],
     locale: "en_US",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "VEDR - Swift Presentations",
+    title: "Vedr - Swift Presentations",
     description:
       "A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.",
     images: ["https://chraltro.github.io/vedr/editor.png"],
@@ -79,7 +79,7 @@ export default function RootLayout({
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "VEDR",
+    name: "Vedr",
     description:
       "A no-nonsense tool for creating professional, platform-independent HTML presentations from Markdown using familiar Vim motions.",
     url: "https://chraltro.github.io/vedr",

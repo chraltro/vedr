@@ -80,7 +80,7 @@ export const cyclingTips = [
     content: (
       <>
         <a href="https://github.com/chraltro/vedr" target="_blank" rel="noopener noreferrer">
-          Enjoying VEDR? Give it a <span style={{ color: "#5e81ac" }}>★</span> on GitHub!
+          Enjoying Vedr? Give it a <span style={{ color: "#5e81ac" }}>★</span> on GitHub!
         </a>
       </>
     ),
@@ -98,7 +98,7 @@ export const cyclingTips = [
     key: "tagline",
     content: (
       <>
-        VEDR: <i>Swift presentations, flowing like the wind.</i>
+        Vedr: <i>Swift presentations, flowing like the wind.</i>
       </>
     ),
   },

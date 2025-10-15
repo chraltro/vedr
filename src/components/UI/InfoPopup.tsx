@@ -75,7 +75,7 @@ export default function InfoPopup({ show, onClose, popupRef }: InfoPopupProps) {
         <p>
           <strong className="text-nord7">Export:</strong> Use the buttons in the header or Vim commands.
         </p>
-        <p>For more information on how to use VEDR, check</p>
+        <p>For more information on how to use Vedr, check</p>
         <a href="https://github.com/chraltro/vedr" className="text-nord9 underline text-xs">
           Github readme.
         </a>
