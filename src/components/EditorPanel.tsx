@@ -45,14 +45,14 @@ export default function EditorPanel({ fileUploadRef, isMobile }: EditorPanelProp
 
   return (
     <div className="order-2 relative md:w-1/2 w-full rounded-md md:order-1 bg-nord9/30 h-full min-h-48   overscroll-contain overflow-x-hidden">
-      <div className="sticky top-2 right-2 z-10 w-full   pointer-events-none flex items-end justify-end  ">
+      <div className="sticky top-2 right-2 z-10 w-full pointer-events-none flex items-end justify-end">
         <div className="w-10 mr-2">
           <Button
             onClick={() => {
               setIsVimMode((prev) => !prev);
             }}
             title="toggle vim mode"
-            color={`${isVimMode ? "bg-nord9 text-nord0  hover:text-nord0 " : "bg-nord1  text-nord4/80  "} pointer-events-auto    opacity-50 hover:opacity-100`}
+            color={`${isVimMode ? "bg-nord9 text-nord0  hover:text-nord0 " : "bg-nord1  text-nord4/80  "} pointer-events-auto opacity-50 hover:opacity-100`}
           >
             <VimIcon />
           </Button>

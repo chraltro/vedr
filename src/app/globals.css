@@ -31,9 +31,18 @@
 }
 body {
   margin: 0;
+  padding-left: 8px;
+  padding-right: 8px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior: none;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
 * {
   scrollbar-width: none;
@@ -51,4 +60,16 @@ body {
   code {
     @apply text-nord0 px-1 py-0.5 text-xs font-semibold inline-block  bg-nord7 rounded-sm;
   }
+}
+
+/* Fix all padding and margins */
+button {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+
+.bg-nord0 span,
+.bg-nord1 span,
+.bg-nord1 p {
+  padding-left: 0.5rem !important;
 }

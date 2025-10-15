@@ -145,9 +145,9 @@ export default function HeaderFooterManager({
   }, [handleClickOutside]);
 
   return (
-    <div className="w-full flex flex-col  gap-2 bg-nord1 text-nord4 px-4 py-2 overflow-y-hidden rounded">
+    <div className="w-full flex flex-col gap-2 bg-nord1 text-nord4 px-4 py-2 overflow-y-hidden rounded">
       <div className="flex justify-between w-full ">
-        <span className="font-semibold text-nord4  sticky top-0">Headers/Footers:</span>
+        <span className="font-semibold text-nord4 sticky top-0 pl-2">Headers/Footers:</span>
         {availableHeaderFooterPositions.length > 0 && (
           <button
             onClick={onToggleAddForm}

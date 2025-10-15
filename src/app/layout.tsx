@@ -92,7 +92,7 @@ export default function RootLayout({
           {JSON.stringify(schema)}
         </script>
       </Head>
-      <body className={`${inter.className}  bg-nordic  `}>
+      <body className={`${inter.className} bg-nordic`}>
         {children}
         {enableAnalytics ? <Analytics /> : null}
       </body>

@@ -62,13 +62,13 @@ export default function AppFooter() {
   }, [handleClickOutside]);
 
   return (
-    <footer className="p-2  px-6 flex justify-between items-center flex-col md:flex-row gap-2  text-xs text-nord4">
-      <div className="flex items-center gap-3 text-nord5 w-full justify-center md:justify-start">
+    <footer className="p-2 px-6 flex justify-between items-center flex-col md:flex-row gap-2 text-xs text-nord4">
+      <div className="flex items-center gap-3 text-nord5 w-full justify-center md:justify-start md:ml-2">
         <button
           onClick={toggleWordCount}
           className="font-semibold hover:text-nord8 focus:outline-none"
         >
-          {showWordCount ? ` ${words} Words` : ` ${letters} Letters`}
+          {showWordCount ? `${words} Words` : `${letters} Letters`}
         </button>
         <span className="text-nord3">|</span>
         <span>

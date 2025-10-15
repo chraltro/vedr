@@ -14,7 +14,7 @@ export default function AppHeader({ fileUploadRef }: AppHeaderProps) {
 
   return (
     <header className="py-2 px-6 md:py-3 h-16 flex justify-between items-center space-x-2 text-nord9 md:px-8">
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 md:ml-2">
         <img
           src={`${basePath}/logo.svg`}
           alt="Vedr"

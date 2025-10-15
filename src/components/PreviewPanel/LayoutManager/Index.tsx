@@ -36,24 +36,28 @@ export default function LayoutManager({ isKeyboardVisible }: LayoutManagerProps)
 
   return (
     (!isKeyboardVisible || isEditing) && (
-      <ToggleExpand
-        isExpanded={isMobileSettingsExpanded}
-        setIsExpanded={setIsMobileSettingsExpanded}
-      >
-        <div className="flex flex-row  gap-2 w-full   justify-between">
-          <div className="flex flex-col gap-2 w-full md:w-auto justify-center">
-            <ThemeSelector />
-            <TemplateSelector />
-            <FontSelector /> {/* Add FontSelector here */}
+      <div className="md:ml-4">
+        <ToggleExpand
+          isExpanded={isMobileSettingsExpanded}
+          setIsExpanded={setIsMobileSettingsExpanded}
+        >
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-row gap-2 w-full justify-between">
+              <div className="flex flex-col gap-2 w-full md:w-auto justify-center">
+                <ThemeSelector />
+                <TemplateSelector />
+                <FontSelector /> {/* Add FontSelector here */}
+              </div>
+              <FontScaler />
+              <LayoutSettings availableHeaderFooterPositions={availableHeaderFooterPositions} />
+            </div>
+            <HeaderFooterManager
+              availableHeaderFooterPositions={availableHeaderFooterPositions}
+              setIsEditing={setIsEditing}
+            />
           </div>
-          <FontScaler />
-          <LayoutSettings availableHeaderFooterPositions={availableHeaderFooterPositions} />
-        </div>
-        <HeaderFooterManager
-          availableHeaderFooterPositions={availableHeaderFooterPositions}
-          setIsEditing={setIsEditing}
-        />
-      </ToggleExpand>
+        </ToggleExpand>
+      </div>
     )
   );
 }
