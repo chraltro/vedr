@@ -1,4 +1,5 @@
-@import "../../../shared/theme.css";
+/* Use the project's shared theme file. Correct relative path from src/app */
+@import "../../shared/theme.css";
 @import "tailwindcss";
 
 :root {

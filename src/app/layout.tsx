@@ -75,6 +75,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const enableAnalytics = process.env.NEXT_PUBLIC_ENABLE_VERCEL_ANALYTICS === "true";
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -93,7 +94,7 @@ export default function RootLayout({
       </Head>
       <body className={`${inter.className}  bg-nordic  `}>
         {children}
-        <Analytics />
+        {enableAnalytics ? <Analytics /> : null}
       </body>
     </html>
   );
