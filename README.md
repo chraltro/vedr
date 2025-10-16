@@ -1,177 +1,140 @@
-<div align="center">
-  <img src="logo.svg" alt="Vedr Logo" width="120">
-  <h1>Vedr</h1>
-  <p><i>Swift presentations, flowing like the wind.</i></p>
-  <p>A no-nonsense tool for crafting minimalist, professional platform-independent presentations directly from Markdown using familiar Vim motions.</p>
+# Vedr - Presentation Builder
 
-  <p>
-    <img src="https://img.shields.io/badge/license-GPL--2.0-blue.svg?style=for-the-badge&logoColor=D8DEE9&color=5E81AC" alt="License: GPL-2.0">
-    <!-- Add other badges here: build status, version, etc. -->
-    <!-- Example: <img src="https://img.shields.io/github/stars/YOUR_USERNAME/markweavia?style=for-the-badge&logo=github&logoColor=D8DEE9&color=88C0D0" alt="GitHub stars"> -->
-    <!-- Example: <img src="https://img.shields.io/github/workflow/status/YOUR_USERNAME/markweavia/CI?style=for-the-badge&logo=githubactions&logoColor=D8DEE9&color=A3BE8C" alt="Build Status"> -->
-  </p>
-</div>
+A Markdown-to-HTML slide generator with Vim keybindings and live preview. Export self-contained offline presentations with embedded fonts and syntax highlighting.
 
-## The Inspiration
+**Vedr** (Old Norse: "wind" or "weather")
 
-- Creating slides should be a straightforward process, especially for content that benefits from a minimalist aesthetic.
-- Traditional presentation software often involves excessive mouse dragging and complex component manipulation for what should be simple text and structure.
-- Vedr was born from the desire to simplify this
-  - enabling the creation of clean, professional slides with the ease of editing a Markdown file,
-  - enhanced by the efficiency of Vim keybindings.
-    > Most impactful presentations rely on clear text and an uncluttered background, a philosophy Vedr aims to embody perfectly.
+## Features
 
-## Overview
+- Markdown-to-slides conversion with live preview
+- Vim keybindings for efficient editing (hjkl navigation, :w to save, :p to preview)
+- Multiple clean themes (light/dark/monochrome variants)
+- Self-contained HTML export (~2MB with embedded fonts, syntax highlighting, KaTeX)
+- Customizable headers, footers, and page numbers
+- Font scaling and layout controls
+- Local storage persistence
+- Code syntax highlighting via Prism.js
+- Mathematical expressions via KaTeX
+- Mobile-responsive interface with 16:9 aspect ratio preservation
 
-Vedr is a web-based application that transforms your Markdown text and KaTeX into elegant HTML slide presentations. It provides a live preview of your current slide, allowing for a seamless WYSIWYG-like experience.
+## Live Demo
 
-**Key Features:**
+[chraltro.github.io/vedr](https://chraltro.github.io/vedr)
 
-- **Markdown-First:** Write slides using simple, intuitive Markdown syntax.
-- **Vim Keybindings:** Navigate and edit with the speed and precision of Vim (hjkl go brrrr).
-- **Live Slide Preview:** Instantly see how your current Markdown section renders as a slide.
-- **Clean Themes:** Choose from a selection of clean, minimalist themes, including light and dark variations and monochrome options.
-- **Customizable Layout:** Control page numbers, header/footer text and positions, and whether these elements appear on the first slide.
-- **Font Scaling:** Adjust the base font size of your slides for optimal readability(default should work for most).
-- **Local Storage Persistence:** Your work is automatically saved in your browser.
-- **Export Options:**
-  - Download your presentation as a self-contained HTML file.
-  - Offline-first approach with fonts, code syntax highlighting and KaTeX all included in single HTML file (~2MB file size).
-  - Partial support for images (online)
-  - Download the source Markdown (.md) file.
-- **File Upload:** Import existing Markdown files to continue your work or convert them to slides.
-- **Predefined Templates:** Quickly start with some predefined templates.
-## Examples
+Example presentations:
 - [Dark template](https://chraltro.github.io/vedr/examples/nordDark.html)
 - [Light template](https://chraltro.github.io/vedr/examples/nordLight.html)
 - [True White template](https://chraltro.github.io/vedr/examples/trueWhite.html)
 - [True Black template](https://chraltro.github.io/vedr/examples/trueBlack.html)
 
-
-
-<table style="width:100%;">
-  <tr>
-    <td style="width:50%; text-align:center;">
-      <img src="https://github.com/user-attachments/assets/b993991c-1c25-47be-9f84-248d3bc678c4" alt="Presentation Preview" style="max-width:100%;">
-      <p style="font-size: smaller; text-align: center;">Presentation Preview</p>
-    </td>
-    <td style="width:50%; text-align:center;">
-      <img src="https://github.com/user-attachments/assets/437e63d7-9672-4cb3-b9f8-d478ddfb0119" alt="Editor View" style="max-width:100%;">
-      <p style="font-size: smaller; text-align: center;">Editor View</p>
-    </td>
-  </tr>
-</table>
 ## How It Works
 
-1.  **Write Markdown:** Use standard Markdown headings (`#`, `##`) to define new slides.
-2.  **Live Preview:** As you type or navigate with your cursor, the preview pane updates to show a preview of the slide your cursor is currently on.
-3.  **Customize:** Use the controls to select themes, adjust font sizes, manage page numbers, and add custom headers or footers.
-4.  **Vim Commands:** Utilize built-in Vim commands for saving (`:w`, `:ws`) uploading (`:u`) previewing(`:p`),changing theme(`:t`), toggling page numbers(`:page`), adding headerfooters(`:h`)
-5.  **Export:** When ready, export your entire presentation as a single HTML file or save your Markdown source.
+1. Write slides using standard Markdown syntax (headings define slide breaks)
+2. Live preview updates to show the slide at the current cursor position
+3. Customize theme, font size, headers, footers, and page numbers
+4. Export as a single self-contained HTML file or download Markdown source
 
-## Understanding Exported Slides
+Each Markdown heading (`#` or `##`) creates a new slide. The editor provides instant feedback with a synchronized preview pane. All customizations (theme, font scaling, layout options) are applied in real-time.
 
-Vedr generates a single, self-contained HTML file. This file includes all necessary CSS for styling (based on your chosen theme and customizations) and JavaScript for interactivity. It works offline.
+### Exported Presentations
 
-**HTML Structure & Styling:**
+Exported HTML files include all dependencies:
+- Embedded fonts (Inter for text, Iosevka for code)
+- Prism.js for syntax highlighting
+- KaTeX for mathematical expressions
+- Theme-specific CSS variables
+- Interactive navigation controls
 
-- Each Markdown slide (starting with a `#` title or `##` heading ) is rendered into a `<div class="slide">`.
-- The content within each slide is wrapped in a `<div class="slide-content-wrapper">`.
-- all content maintain 16:9 aspect ratio.
-- component sizes are based on viewport size.
-- Standard Markdown elements (headings, paragraphs, lists, code blocks, tables, etc.) are converted to their corresponding HTML tags with marked.js and styled according to the active theme variables and base presentation CSS.
-- Code blocks are highlighted using Prism.js.
-- Mathematical expressions are rendered using KaTeX.
-- Custom header/footer items and page numbers are positioned absolutely within each slide based on your settings.
-- The overall presentation uses a clean, minimalist design by default, with font sizes and colors determined by the selected theme and font scaling options.
-  > 2Mb file size includes code syntax highlighting , fonts and katex
+File size is approximately 2MB regardless of content length due to embedded assets.
 
-> to improve performance in live preview fonts are loaded at startup , styles and text is injected based on change this improves performance compared to previous approach
->
-> with this new approach after the initial load all edits can be made in near instant, no more debounce needed.
+### Navigation
 
-**Interactivity & Navigation:**
+**Keyboard shortcuts:**
+- `ArrowRight`, `l`, `PageDown`, `Spacebar`: Next slide
+- `ArrowLeft`, `h`, `PageUp`: Previous slide
+- `Home`/`End`: First/last slide
+- `f`: Fullscreen
+- Number keys (`0-9`): Jump to specific slide
 
-The exported HTML slides are fully interactive, allowing for easy navigation:
+**Vim commands:**
+- `:w`, `:ws`: Save presentation
+- `:u`: Upload Markdown file
+- `:p`: Preview mode
+- `:t`: Change theme
+- `:page`: Toggle page numbers
+- `:h`: Add header/footer
 
-**Navigation Buttons:**
+**Mouse controls:**
+- Navigation buttons appear on hover (bottom right)
+- Slide counter shows current position
 
-A set of semi-transparent navigation buttons appears on hover (typically at the bottom right) for mouse-based control:
+## Prerequisites
 
-- **(Start/Home)** Jumps to the first slide.
-- **(Previous)** Moves to the previous slide.
-- **Slide Counter (`X / N`):** Shows the current slide number and total slides.
-- **(Next)** Moves to the next slide.
-- **(End)** Jumps to the last slide.
+- Node.js 18+
 
-**Keyboard Shortcuts:**
+## Local Development
 
-A comprehensive set of keyboard shortcuts is available for efficient navigation:
+```bash
+git clone https://github.com/chraltro/vedr.git
+cd vedr
+npm install
+npm run dev
+```
 
-- **`ArrowRight`**, **`l`**, **`PageDown`**, **`Spacebar`**: Next slide.
-- **`ArrowLeft`**, **`h`**, **`PageUp`**: Previous slide.
-- **`f`**: FullScreen
-- **`Home`**: Go to the first slide.
-- **`End`**: Go to the last slide.
-- **`0-9` Number Keys**: Jump to a specific slide (e.g., `1` for slide 1, `0` for slide 10 if there are 10+ slides).
-
-### Fonts Used
-
-- **Inter:** The primary font
-- **Iosevka:** A monospace font used in code blocks
+Open [http://localhost:3000](http://localhost:3000)
 
 ## Tech Stack
 
-<div align="left" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB&labelColor=2E3440" alt="React">
-  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=D8DEE9&labelColor=2E3440" alt="Next.js">
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=D8DEE9&labelColor=2E3440" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=D8DEE9&labelColor=2E3440" alt="Tailwind CSS">
-  <img src="https://img.shields.io/badge/CodeMirror-D28A00?style=for-the-badge&logo=codemirror&logoColor=D8DEE9&labelColor=2E3440" alt="CodeMirror">
-  <img src="https://img.shields.io/badge/VIM-019733?style=for-the-badge&logo=vim&logoColor=D8DEE9&labelColor=2E3440" alt="Vim (bindings)">
-  <img src="https://img.shields.io/badge/Marked.js-333333?style=for-the-badge&logo=markdown&logoColor=D8DEE9&labelColor=2E3440" alt="Marked.js">
-</div>
+- Next.js 14 with React 19
+- TypeScript
+- Tailwind CSS
+- CodeMirror 6 with @replit/codemirror-vim
+- Marked.js (Markdown parsing)
+- Prism.js (syntax highlighting)
+- KaTeX (mathematical expressions)
 
-- **Framework:** Next.js (with React)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Editor Core:** CodeMirror 6
-- **Vim Bindings:** @replit/codemirror-vim
-- **Markdown Parsing:** Marked.js
+## Project Structure
 
-## Future Plans
+```
+vedr/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx         # Root layout with theme system
+│   │   └── page.tsx           # Main editor interface
+│   ├── components/
+│   │   ├── Editor.tsx         # CodeMirror editor with Vim bindings
+│   │   ├── Preview.tsx        # Live slide preview
+│   │   ├── Controls.tsx       # Theme and layout controls
+│   │   └── ExportDialog.tsx   # HTML/Markdown export
+│   └── lib/
+│       ├── markdown.ts        # Marked.js configuration
+│       └── themes.ts          # Theme definitions
+└── public/
+    └── fonts/                 # Inter and Iosevka font files
+```
 
-- **Image Pasting & Handling:** Directly paste images into the Markdown editor and have them appropriately embedded in slides.
-  - if you want to use images in your presentation store them in a folder in same directory and serve them using relative or absolute path.
-- **More Themes:** Continuously expand the selection of built-in themes.
-- **User-Loadable Custom Themes:** Allow users to define and load their own CSS theme variables or full theme files.
-- **Css editing:** Allow users to edit css directly in the editor. This will allow users to customize slides in a more granular way.
+## Technical Implementation
 
-## Mobile view
-<table style="width:50%;">
-  <tr>
-    <td>
-      <img src="https://github.com/user-attachments/assets/15b09fd8-1fcf-453c-a97b-9d046e780b4a" alt="Image 1" style="height:400px;">
-    </td>
-    <td>
-      <img src="https://github.com/user-attachments/assets/2bc28ac3-2303-4455-9f4b-a576725a660b" alt="Image 2" style="height:400px;">
-    
-    </td>
-  </tr>
-  <tr>
-    <td>final presentation preserve(16:9) aspect</td>
-    <td>editor view</td>
-  </tr>
-</table>
-## Contributions are welcome!
+### Performance Optimization
+
+The live preview system loads fonts at startup and injects only style and text changes during editing. This approach eliminates debounce delays and provides near-instant updates after the initial load.
+
+### Slide Structure
+
+Each slide is rendered as a `<div class="slide">` containing a `<div class="slide-content-wrapper">`. All content maintains 16:9 aspect ratio with viewport-based component sizing. Theme variables control colors and typography across both the editor and exported presentations.
+
+### Offline Support
+
+Exported presentations work offline because all assets (fonts, libraries, styles) are embedded in the HTML file. Images require external hosting and are referenced via relative or absolute paths.
+
+## Deployment
+
+```bash
+npm run build
+```
+
+Deploy the `out/` directory to any static hosting service.
 
 ## License
 
-This project is licensed under the **GNU General Public License v3.0**.
-See the [LICENSE](LICENSE) file for details.
-
-<div align="center">
-  <hr style="border-top: 1px solid #4C566A; margin: 20px 0;">
-  <img src="logo.svg" alt="Vedr Logo" width="200">
-  <p>Swift presentations, flowing like the wind.</p>
-</div>
+GPL-3.0
