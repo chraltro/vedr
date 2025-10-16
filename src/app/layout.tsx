@@ -13,7 +13,7 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Vedr - Swift Presentations",
+    default: "Vedr - Presentation Builder",
     template: "%s - Vedr",
   },
   description:
