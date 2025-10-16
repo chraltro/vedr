@@ -93,6 +93,15 @@ export default function RootLayout({
         </script>
       </Head>
       <body className={`${inter.className} bg-nordic`}>
+        {/* Wayfinder Logo Link */}
+        <a
+          href="../wayfinder/index.html"
+          className="fixed bottom-5 right-5 z-[1000] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-200"
+          title="Back to Wayfinder"
+        >
+          <img src="../wayfinder/wayfinder_logo.svg" alt="Wayfinder" className="w-12 h-12 block" />
+        </a>
+
         {children}
         {enableAnalytics ? <Analytics /> : null}
       </body>
