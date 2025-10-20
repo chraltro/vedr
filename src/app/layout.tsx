@@ -99,7 +99,7 @@ export default function RootLayout({
           className="fixed bottom-5 right-5 z-[1000] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-200"
           title="Back to Wayfinder"
         >
-          <img src="../wayfinder/wayfinder_logo.svg" alt="Wayfinder" className="w-12 h-12 block" />
+          <img src="/vedr/wayfinder_logo.svg" alt="Wayfinder" className="w-12 h-12 block" />
         </a>
 
         {children}
